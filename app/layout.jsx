@@ -15,9 +15,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="light">
-      <body className={open_sans.className}>
+      <body className={`${open_sans.className} bg-gray-50 h-screen`}>
         <Providers>
-          {children}
+          <main className="max-w-md mx-auto px-4 sm:px-8">{children}</main>
         </Providers>
       </body>
     </html>
