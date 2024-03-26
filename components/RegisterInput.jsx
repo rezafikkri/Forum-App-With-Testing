@@ -1,17 +1,24 @@
 'use client'
 
 import { Input, Button, Link } from '@nextui-org/react';
+import PropTypes from 'prop-types';
 import useInput from '@/hooks/useInput';
 import { NEXTUI_INPUT_PROPS } from '@/lib/constants';
 
-export default function RegisterInput() {
+export default function RegisterInput({ onRegister }) {
   const [name, onNameChange] = useInput('');
   const [email, onEmailChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onRegister({ name, email, password });
+  }
+
   return (
     <>
-      <form action="" className="flex flex-col gap-y-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
         <Input
           label="Name"
           placeholder="Enter your name"
@@ -35,12 +42,16 @@ export default function RegisterInput() {
           onChange={onPasswordChange}
           { ...NEXTUI_INPUT_PROPS }
         />
-        <Button color="primary" radius="sm" size="lg">Register</Button>
+        <Button type="submit" color="primary" radius="sm" size="lg">Register</Button>
       </form>
-      <p className="text-sm mt-2 text-center">
+      <p className="text-sm mt-2 text-center text-gray-700">
         <span>Already have an account? </span>
         <Link href="/signin" size="sm">Sign In</Link>
       </p>
     </>
   );
 }
+
+RegisterInput.propTypes = {
+  onRegister: PropTypes.func.isRequired,
+};
