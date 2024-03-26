@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function useInput(defaultValue = '') {
+export default function useInput(defaultValue = '') {
   const [value, setValue] = useState(defaultValue);
 
   function handleValueChange({ target }) {
@@ -9,5 +9,3 @@ function useInput(defaultValue = '') {
 
   return [value, handleValueChange, setValue];
 }
-
-export default useInput;

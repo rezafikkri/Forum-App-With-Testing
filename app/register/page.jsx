@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Alert from '@/components/Alert';
-import RegisterInput from '@/components/RegisterInput';
-import { useAppDispatch } from '@/hooks/reduxHooks';
-import { asyncRegisterUser } from '@/lib/users/action';
+import Alert from '../../components/alert';
+import RegisterInput from '../../components/register-input';
+import { useAppDispatch } from '../../hooks/redux-hooks';
+import { asyncRegisterUser } from '../../lib/users/action';
 
-export default function page() {
+export default function Page() {
   const dispatch = useAppDispatch();
   const router = useRouter();
 

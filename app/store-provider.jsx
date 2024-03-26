@@ -1,7 +1,8 @@
-'use client'
+'use client';
 
 import { useRef } from 'react';
 import { Provider } from 'react-redux';
+import PropTypes from 'prop-types';
 import { makeStore } from '../lib/store';
 
 export default function StoreProvider({ children }) {
@@ -13,3 +14,7 @@ export default function StoreProvider({ children }) {
 
   return <Provider store={storeRef.current}>{children}</Provider>;
 }
+
+StoreProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};

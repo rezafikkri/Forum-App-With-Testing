@@ -1,9 +1,10 @@
-import { Open_Sans } from 'next/font/google';
-import { Providers } from './Providers';
+import { Open_Sans as OpenSans } from 'next/font/google';
+import PropTypes from 'prop-types';
+import Providers from './providers';
 import './globals.css';
-import Loading from '@/components/Loading';
+import Loading from '../components/loading';
 
-const open_sans = Open_Sans({
+const openSans = OpenSans({
   subsets: ['latin'],
 });
 
@@ -16,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="light">
-      <body className={`${open_sans.className} bg-gray-50 h-screen text-gray-800`}>
+      <body className={`${openSans.className} bg-gray-50 h-screen text-gray-800`}>
         <Providers>
           <Loading />
           <main className="max-w-md mx-auto px-4 sm:px-8">{children}</main>
@@ -25,3 +26,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};

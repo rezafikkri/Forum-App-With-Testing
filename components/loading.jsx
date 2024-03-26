@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import LoadingBar from 'react-redux-loading-bar';
 

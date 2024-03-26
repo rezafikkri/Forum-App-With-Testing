@@ -1,9 +1,9 @@
-'use client'
+'use client';
 
 import { Input, Button, Link } from '@nextui-org/react';
 import PropTypes from 'prop-types';
-import useInput from '@/hooks/useInput';
-import { NEXTUI_INPUT_PROPS } from '@/lib/constants';
+import useInput from '../hooks/use-input';
+import { NEXTUI_INPUT_PROPS } from '../lib/constants';
 
 export default function RegisterInput({ onRegister }) {
   const [name, onNameChange] = useInput('');
@@ -24,7 +24,7 @@ export default function RegisterInput({ onRegister }) {
           placeholder="Enter your name"
           value={name}
           onChange={onNameChange}
-          { ...NEXTUI_INPUT_PROPS }
+          {...NEXTUI_INPUT_PROPS}
         />
         <Input
           type="email"
@@ -32,7 +32,7 @@ export default function RegisterInput({ onRegister }) {
           placeholder="Enter your email"
           value={email}
           onChange={onEmailChange}
-          { ...NEXTUI_INPUT_PROPS }
+          {...NEXTUI_INPUT_PROPS}
         />
         <Input
           type="password"
@@ -40,7 +40,7 @@ export default function RegisterInput({ onRegister }) {
           placeholder="Enter your password"
           value={password}
           onChange={onPasswordChange}
-          { ...NEXTUI_INPUT_PROPS }
+          {...NEXTUI_INPUT_PROPS}
         />
         <Button type="submit" color="primary" radius="sm" size="lg">Register</Button>
       </form>
