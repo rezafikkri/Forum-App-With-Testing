@@ -5,13 +5,19 @@ import PropTypes from 'prop-types';
 import useInput from '../hooks/use-input';
 import { NEXTUI_INPUT_PROPS } from '../lib/constants';
 
-export default function SignInInput() {
+export default function SignInInput({ onSignIn }) {
   const [email, onEmailChange] = useInput('');
   const [password, onPasswordChange] = useInput('');
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onSignIn({ email, password });
+  }
+
   return (
     <>
-      <form className="flex flex-col gap-y-4">
+      <form className="flex flex-col gap-y-4" onSubmit={handleSubmit}>
         <Input
           label="Email"
           placeholder="Enter your email"
@@ -35,3 +41,7 @@ export default function SignInInput() {
     </>
   );
 }
+
+SignInInput.propTypes = {
+  onSignIn: PropTypes.func.isRequired,
+};
