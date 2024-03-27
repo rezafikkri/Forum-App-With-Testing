@@ -16,7 +16,7 @@ export default function Page() {
   function handleRegister({ name, email, password }) {
     dispatch(asyncRegisterUser({ name, email, password }))
       .then(() => {
-        router.push('/signin');
+        router.push('/sign-in');
       }).catch((error) => {
         setRegisterError(error.message);
       });

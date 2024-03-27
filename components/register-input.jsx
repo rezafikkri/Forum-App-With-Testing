@@ -49,7 +49,7 @@ export default function RegisterInput({ onRegister }) {
       </form>
       <p className="text-sm mt-2 text-center text-gray-700">
         <span>Already have an account? </span>
-        <Link href="/signin" size="sm">Sign In</Link>
+        <Link href="/sign-in" size="sm">Sign In</Link>
       </p>
     </>
   );
