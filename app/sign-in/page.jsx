@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Alert from '../../components/alert';
 import { useAppDispatch } from '../../hooks/redux-hooks';
-import SignInInput from '../../components/signin-input';
+import SignInInput from '../../components/sign-in-input';
 import { asyncSetAuthUser } from '../../lib/authUser/action';
 
 export default function SignIn() {
