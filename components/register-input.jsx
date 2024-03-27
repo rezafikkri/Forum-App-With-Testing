@@ -24,6 +24,7 @@ export default function RegisterInput({ onRegister }) {
           placeholder="Enter your name"
           value={name}
           onChange={onNameChange}
+          labelPlacement="outside"
           {...NEXTUI_INPUT_PROPS}
         />
         <Input
@@ -32,6 +33,7 @@ export default function RegisterInput({ onRegister }) {
           placeholder="Enter your email"
           value={email}
           onChange={onEmailChange}
+          labelPlacement="outside"
           {...NEXTUI_INPUT_PROPS}
         />
         <Input
@@ -40,6 +42,7 @@ export default function RegisterInput({ onRegister }) {
           placeholder="Enter your password"
           value={password}
           onChange={onPasswordChange}
+          labelPlacement="outside"
           {...NEXTUI_INPUT_PROPS}
         />
         <Button type="submit" color="primary" radius="sm" size="lg">Register</Button>
