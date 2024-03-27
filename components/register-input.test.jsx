@@ -8,12 +8,12 @@ import {
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as matchers from '@testing-library/jest-dom/matchers';
-import RegisterInput from '../components/register-input';
+import RegisterInput from './register-input';
 
 expect.extend(matchers);
 
 /* Skenario testing
- * 
+ *
  * - RegisterInput component
  *   - Should handle name typing correctly
  *   - Should handle email typing correctly

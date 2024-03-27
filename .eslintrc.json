@@ -15,12 +15,13 @@
     "react/react-in-jsx-scope": "off",
     "eol-last": "off",
     "react/jsx-no-bind": ["error", {
-      "allowFunctions": true
+      "allowFunctions": true,
+      "allowArrowFunctions": true
     }],
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/no-danger": "off",
     "react/require-default-props": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": ["vite.config.js"]}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
   }
 }
