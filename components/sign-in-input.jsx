@@ -26,6 +26,7 @@ export default function SignInInput({ onSignIn }) {
           {...NEXTUI_INPUT_PROPS}
         />
         <Input
+          type="password"
           label="Password"
           placeholder="Enter your password"
           value={password}
