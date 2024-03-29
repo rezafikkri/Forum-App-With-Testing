@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Alert from '../../components/alert';
-import RegisterInput from '../../components/register-input';
-import { useAppDispatch } from '../../hooks/redux-hooks';
-import { asyncRegisterUser } from '../../lib/users/action';
+import Alert from '@/components/alert';
+import RegisterInput from '@/components/register-input';
+import { useAppDispatch } from '@/hooks/redux-hooks';
+import { asyncRegisterUser } from '@/lib/users/action';
 
 export default function Page() {
   const dispatch = useAppDispatch();

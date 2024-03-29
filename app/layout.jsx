@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <body className={`${openSans.className} bg-gray-50 min-h-screen text-gray-800`}>
         <Providers>
           <Loading />
-          <main className="max-w-md mx-auto px-4 sm:px-8">{children}</main>
+          {children}
         </Providers>
       </body>
     </html>
