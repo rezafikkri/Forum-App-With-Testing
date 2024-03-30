@@ -16,7 +16,7 @@ export default function SignedInLayout({ children }) {
       <main className="max-w-4xl mx-auto px-4 sm:px-8">
         {children}
       </main>
-      <footer className="max-w-5xl mx-auto px-4 sm:px-8"></footer>
+      <footer className="max-w-5xl mx-auto px-4 sm:px-8" />
     </>
   );
 }

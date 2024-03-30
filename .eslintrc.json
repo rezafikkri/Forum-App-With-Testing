@@ -22,6 +22,8 @@
     "jsx-a11y/label-has-associated-control": "off",
     "react/no-danger": "off",
     "react/require-default-props": "off",
-    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}]
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "import/no-unresolved": "off",
+    "import/extensions": "off"
   }
 }
