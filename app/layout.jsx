@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Providers from './providers';
 import './globals.css';
 import Loading from '../components/loading';
+import IsPreload from './is-preload';
 
 const openSans = OpenSans({
   subsets: ['latin'],
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
       <body className={`${openSans.className} bg-gray-50 min-h-screen text-gray-800`}>
         <Providers>
           <Loading />
+          <IsPreload />
           {children}
         </Providers>
       </body>

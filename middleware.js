@@ -1,10 +1,11 @@
 /* eslint-disable consistent-return */
+import { cookies } from 'next/headers';
 
 export function middleware(request) {
-  const isSignIn = request.cookies.get('isSignIn')?.value;
+  const signIn = cookies().get('signIn')?.value;
 
   if (
-    isSignIn
+    signIn
     && (
       request.nextUrl.pathname.startsWith('/sign-in')
       || request.nextUrl.pathname.startsWith('/register')
