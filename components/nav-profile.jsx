@@ -1,9 +1,15 @@
 'use client';
 
-import { useAppSelector } from "@/hooks/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
+import { asyncUnsetAuthUser } from "@/lib/authUser/action";
 
 export default function NavProfile() {
   const authUser = useAppSelector((states) => states.authUser);
+  const dispatch = useAppDispatch();
+
+  function handleSignOut() {
+    dispatch(asyncUnsetAuthUser());
+  }
 
   return (
     <details className="dropdown dropdown-end h-8">
@@ -22,7 +28,15 @@ export default function NavProfile() {
             <div className="skeleton h-4 w-full"></div>
           )}
         </li>
-        <li><a className="hover:bg-red-50 hover:text-red-800">Logout</a></li>
+        <li>
+          <button
+            type="button"
+            className="hover:bg-red-50 hover:text-red-800"
+            onClick={handleSignOut}
+          >
+            Sign Out
+          </button>
+        </li>
       </ul>
     </details>
   );
