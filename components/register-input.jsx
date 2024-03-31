@@ -1,9 +1,8 @@
 'use client';
 
-import { Input, Button, Link } from '@nextui-org/react';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 import useInput from '../hooks/use-input';
-import { NEXTUI_INPUT_PROPS } from '../lib/constants';
 
 export default function RegisterInput({ onRegister }) {
   const [name, onNameChange] = useInput('');
@@ -18,38 +17,48 @@ export default function RegisterInput({ onRegister }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-y-4">
-        <Input
-          label="Name"
-          placeholder="Enter your name"
-          value={name}
-          onChange={onNameChange}
-          labelPlacement="outside"
-          {...NEXTUI_INPUT_PROPS}
-        />
-        <Input
-          type="email"
-          label="Email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={onEmailChange}
-          labelPlacement="outside"
-          {...NEXTUI_INPUT_PROPS}
-        />
-        <Input
-          type="password"
-          label="Password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={onPasswordChange}
-          labelPlacement="outside"
-          {...NEXTUI_INPUT_PROPS}
-        />
-        <Button type="submit" color="primary" radius="sm" size="lg">Register</Button>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-y-1">
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Name</span>
+          </div>
+          <input
+            type="text"
+            placeholder="Enter your name"
+            className="input input-bordered w-full"
+            value={name}
+            onChange={onNameChange}
+          />
+        </label>
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Email</span>
+          </div>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            className="input input-bordered w-full"
+            value={email}
+            onChange={onEmailChange}
+          />
+        </label>
+        <label className="form-control w-full">
+          <div className="label">
+            <span className="label-text">Password</span>
+          </div>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            className="input input-bordered w-full"
+            value={password}
+            onChange={onPasswordChange}
+          />
+        </label>
+        <button type="submit" className="btn btn-primary mt-2">Register</button>
       </form>
       <p className="text-sm mt-2 text-center text-gray-700">
         <span>Already have an account? </span>
-        <Link href="/sign-in" size="sm">Sign In</Link>
+        <Link href="/sign-in" className="link link-neutral">Sign In</Link>
       </p>
     </>
   );

@@ -28,7 +28,7 @@ export default function Page() {
 
   return (
     <>
-      <h1 className="font-extrabold text-3xl mb-8 pt-12">Register</h1>
+      <h1 className="font-extrabold text-3xl mb-6 pt-12">Register</h1>
       {registerError && <Alert message={registerError} onClose={resetRegisterErrorState} />}
       <RegisterInput onRegister={handleRegister} />
     </>
