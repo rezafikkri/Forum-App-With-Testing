@@ -12,8 +12,8 @@ export default function NavProfile() {
   }
 
   return (
-    <details className="dropdown dropdown-end h-8">
-      <summary tabIndex={0} role="button" className="btn btn-sm btn-circle avatar hover:bg-transparent border-0 ring-2 ring-primary-content ring-offset-0">
+    <div className="dropdown dropdown-end h-8">
+      <div tabIndex={0} role="button" className="btn btn-sm btn-circle avatar bg-transparent hover:bg-transparent border-0 ring-2 ring-primary-content ring-offset-0">
         <div className="w-7 rounded-full">
           {authUser ? (
             <img alt={authUser.name} src={authUser.avatar} />
@@ -21,7 +21,7 @@ export default function NavProfile() {
             <div className="skeleton w-7 h-7 rounded-full"></div>
           )}
         </div>
-      </summary>
+      </div>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
         <li className="menu-title">
           {authUser ? `Signed in as ${authUser.email}` : (
@@ -38,6 +38,6 @@ export default function NavProfile() {
           </button>
         </li>
       </ul>
-    </details>
+    </div>
   );
 }
