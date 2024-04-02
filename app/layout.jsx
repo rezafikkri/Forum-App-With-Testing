@@ -1,9 +1,10 @@
 import { Open_Sans as OpenSans } from 'next/font/google';
 import PropTypes from 'prop-types';
 import StoreProvider from './store-provider';
-import './globals.css';
 import Loading from '../components/loading';
 import IsPreload from './is-preload';
+import './globals.css';
+import '../node_modules/bootstrap-icons/font/bootstrap-icons.min.css';
 
 const openSans = OpenSans({
   subsets: ['latin'],
@@ -18,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light" className="light">
-      <body className={`${openSans.className} bg-gray-50 dark:bg-inherit min-h-screen text-gray-800`}>
+      <body className={`${openSans.className} bg-base-200 dark:bg-inherit min-h-screen text-gray-800`}>
         <StoreProvider>
           <Loading />
           <IsPreload />
