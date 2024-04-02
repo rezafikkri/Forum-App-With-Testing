@@ -1,11 +1,26 @@
 'use client';
 
 import ThreadsList from '@/components/threads-list';
-import { useAppSelector } from '@/hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
+import { asyncPopulateUsersThreadsAndCategories } from '@/lib/shared/action';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function Home() {
+  const dispatch = useAppDispatch();
   const authUser = useAppSelector((states) => states.authUser);
+  const users = useAppSelector((states) => states.users);
+  const threads = useAppSelector((states) => states.threads);
+  const categories = useAppSelector((states) => states.categories);
+
+  useEffect(() => {
+    dispatch(asyncPopulateUsersThreadsAndCategories());
+  }, [dispatch]);
+
+  let threadsList = threads.map((thread) => ({
+    ...thread,
+    owner: users.find((user) => user.id === thread.ownerId),
+  }));
 
   return (
     <>
@@ -26,7 +41,7 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <ThreadsList />
+      <ThreadsList threads={threadsList} />
     </>
   );
 }
