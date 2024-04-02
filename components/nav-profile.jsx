@@ -1,7 +1,7 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from "@/hooks/redux-hooks";
-import { asyncUnsetAuthUser } from "@/lib/authUser/action";
+import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
+import { asyncUnsetAuthUser } from '@/lib/authUser/action';
 
 export default function NavProfile() {
   const authUser = useAppSelector((states) => states.authUser);

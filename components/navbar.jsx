@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { cookies } from 'next/headers';
 import NavProfile from './nav-profile';
+import NavMenu from './nav-menu';
 
 export default function Navbar() {
   const signIn = cookies().get('signIn')?.value;
@@ -17,10 +18,7 @@ export default function Navbar() {
         />
       </Link>
       <div className="basis-full flex justify-between items-center ms-7">
-        <ul className="flex gap-7">
-          <li><Link href="/" className="hover:text-primary">Threads</Link></li>
-          <li><Link href="/leaderboards" className="hover:text-primary">Leaderboards</Link></li>
-        </ul>
+        <NavMenu />
         <ul className="leading-none">
           <li>
             {signIn ? (
