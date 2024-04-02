@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { asyncPopulateUsersThreadsAndCategories } from '@/lib/shared/action';
 import { setCategoryActionCreator } from '@/lib/categories/action';
+import ThreadsFilter from '@/components/threads-filter';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -40,25 +41,11 @@ export default function Home() {
           {authUser && <Link href="/create" className="btn btn-primary btn-sm">Create Thread</Link>}
         </div>
         <div className="flex justify-between items-center">
-          <p>{threads.length} threads</p>
-          <div className="flex items-center">
-            <label
-              className="border-y border-s border-gray-300 bg-gray-50 h-8 flex px-3 items-center text-sm rounded-tl-lg rounded-bl-lg"
-              for="category"
-            >
-              Category
-            </label>
-            <select
-              className="select select-bordered w-full select-sm rounded-bl-none rounded-tl-none"
-              id="category"
-              value={categories.selected}
-              onChange={handleCategoryChange}
-            >
-              {categories.values.map((category) => (
-                <option key={category} value={category}>{category}</option>
-              ))}
-            </select>
-          </div>
+          <ThreadsFilter
+            categories={categories}
+            threadsLength={threadsList.length}
+            onCategoryChange={handleCategoryChange}
+          />
         </div>
       </header>
       <ThreadsList threads={threadsList} />
