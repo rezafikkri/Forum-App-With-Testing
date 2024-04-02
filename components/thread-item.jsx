@@ -15,6 +15,8 @@ export default function ThreadItem({
   upVotesBy,
   downVotesBy,
   totalComments,
+  onUpVote,
+  onDownVote,
 }) {
   dayjs.extend(relativeTime);
 
@@ -23,6 +25,20 @@ export default function ThreadItem({
   const stripedBody = stripHtml(body);
   const bodyCountChr = stripedBody.length;
   const dots = bodyCountChr <= 80 ? '' : '...';
+
+  function handleUpVote(e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    onUpVote({ threadId: id, upVotesBy, downVotesBy });
+  }
+
+  function handleDownVote(e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    onDownVote({ threadId: id, downVotesBy, upVotesBy });
+  }
 
   return (
     <article className="bg-white border border-gray-300 p-5 mb-1.5 first:rounded-t-xl last:rounded-b-xl">
@@ -49,13 +65,21 @@ export default function ThreadItem({
           <time>{dayjs().to(dayjs(createdAt))}</time>
         </div>
 
-        <button type="button" className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}>
+        <button
+          type="button"
+          className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}
+          onClick={handleUpVote}
+        >
           <i className={`me-1 bi bi-arrow-up-circle${isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? '-fill' : ''}`} />
           <span>{upVotesBy.length}</span>
         </button>
-        <button type="button" className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}>
+        <button
+          type="button"
+          className={isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? 'text-primary' : ''}
+          onClick={handleDownVote}
+        >
           <i className={`me-1 bi bi-arrow-down-circle${isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? '-fill' : ''}`} />
-          <span>{downVotesBy}</span>
+          <span>{downVotesBy.length}</span>
         </button>
 
         <div>
@@ -86,6 +110,8 @@ const threadItemShape = {
 
 ThreadItem.propTypes = {
   ...threadItemShape,
+  onUpVote: PropTypes.func.isRequired,
+  onDownVote: PropTypes.func.isRequired,
 };
 
 export { threadItemShape };

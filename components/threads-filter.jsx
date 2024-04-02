@@ -9,7 +9,7 @@ export default function ThreadsFilter({ threadsLength, categories, onCategoryCha
   return (
     <>
       <p>
-        {(loadingBar.default !== 0) ? (
+        {(loadingBar.default !== 0 && threadsLength === 0) ? (
           <span className="skeleton h-4 w-28 inline-block" />
         ) : `${threadsLength} threads`} 
       </p>

@@ -2,11 +2,12 @@
 
 import ThreadsList from '@/components/threads-list';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { asyncPopulateUsersThreadsAndCategories } from '@/lib/shared/action';
 import { setCategoryActionCreator } from '@/lib/categories/action';
 import ThreadsFilter from '@/components/threads-filter';
+import { asyncUpVoteThread, asyncDownVoteThread, asyncNeutralVoteThread } from '@/lib/threads/action';
 
 export default function Home() {
   const dispatch = useAppDispatch();
@@ -14,9 +15,56 @@ export default function Home() {
   const users = useAppSelector((states) => states.users);
   const threads = useAppSelector((states) => states.threads);
   const categories = useAppSelector((states) => states.categories);
+  const [voteThreadError, setVoteThreadError] = useState(null);
 
   function handleCategoryChange(e) {
     dispatch(setCategoryActionCreator(e.target.value));
+  }
+
+  function resetVoteThreadErrorState() {
+    setVoteThreadError(null);
+  }
+
+  function handleUpVoteThread({ threadId, upVotesBy, downVotesBy }) {
+    // if user is not sign in yet
+    if (authUser === null) {
+      setVoteThreadError('You must be signed in to upvote thread!');
+      return false;
+    }
+
+    // check, if signed in user not upvote yet
+    if (!upVotesBy.includes(authUser.id)) {
+      // check, if signed in user has downvoted
+      let isDownVoted = false;
+      if (downVotesBy.includes(authUser.id)) isDownVoted = true;
+
+      dispatch(asyncUpVoteThread({ threadId, isDownVoted }));
+    } else {
+      dispatch(asyncNeutralVoteThread({ threadId, target: 'up-vote' }));
+    }
+
+    return true;
+  }
+
+  function handleDownVoteThread({ threadId, downVotesBy, upVotesBy }) {
+    // if user is not sign in yet
+    if (authUser === null) {
+      setVoteThreadError('You must be signed in to downvote thread!');
+      return false;
+    }
+
+    // check, if signed in user not downvote yet
+    if (!downVotesBy.includes(authUser.id)) {
+      // check, if signed in user has upvoted
+      let isUpVoted = false;
+      if (upVotesBy.includes(authUser.id)) isUpVoted = true;
+
+      dispatch(asyncDownVoteThread({ threadId, isUpVoted }));
+    } else {
+      dispatch(asyncNeutralVoteThread({ threadId, target: 'down-vote' }));
+    }
+
+    return true;
   }
 
   useEffect(() => {
@@ -48,7 +96,16 @@ export default function Home() {
           />
         </div>
       </header>
-      <ThreadsList threads={threadsList} />
+      <ThreadsList
+        threads={threadsList}
+        onUpVote={handleUpVoteThread}
+        onDownVote={handleDownVoteThread}
+      />
+      {voteThreadError && (
+        <div className="toast">
+          <Alert message={voteThreadError} onClose={resetVoteThreadErrorState} type="info" />
+        </div>
+      )}
     </>
   );
 }

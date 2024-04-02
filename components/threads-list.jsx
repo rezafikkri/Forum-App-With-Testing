@@ -4,18 +4,18 @@ import { threadItemShape } from './thread-item';
 import { useAppSelector } from '@/hooks/redux-hooks';
 import ThreadItemSkeleton from './thread-item-skeleton';
 
-export default function ThreadsList({ threads }) {
+export default function ThreadsList({ threads, onUpVote, onDownVote }) {
   const loadingBar = useAppSelector((states) => states.loadingBar);
 
   return (
     <article>
-      {(loadingBar.default !== 0) ? (
+      {(loadingBar.default !== 0 && threads.length === 0) ? (
         <>
           <ThreadItemSkeleton />
           <ThreadItemSkeleton />
         </>
       ) : threads.map((thread) => ( 
-        <ThreadItem key={thread.id} {...thread} />
+        <ThreadItem key={thread.id} {...thread} onUpVote={onUpVote} onDownVote={onDownVote} />
       ))}
     </article>
   );
@@ -23,4 +23,6 @@ export default function ThreadsList({ threads }) {
 
 ThreadsList.propTypes = {
   threads: PropTypes.arrayOf(PropTypes.shape(threadItemShape)).isRequired,
+  onUpVote: PropTypes.func.isRequired,
+  onDownVote: PropTypes.func.isRequired,
 };
