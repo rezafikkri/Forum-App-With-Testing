@@ -28,7 +28,7 @@ describe('SignInInput component', () => {
   test('Should handle email typing correctly', async () => {
     // Arrange
     render(<SignInInput onSignIn={() => {}} />);
-    const emailInput = screen.getByLabelText('Email');
+    const emailInput = screen.getByPlaceholderText('Email');
 
     // Action
     await userEvent.type(emailInput, 'fikkri@test.com');
@@ -40,7 +40,7 @@ describe('SignInInput component', () => {
   test('Should handle password typing correctly', async () => {
     // Arrange
     render(<SignInInput onSignIn={() => {}} />);
-    const passwordInput = screen.getByLabelText('Password');
+    const passwordInput = screen.getByPlaceholderText('Password');
 
     // Action
     await userEvent.type(passwordInput, 'rahasia');
@@ -53,9 +53,9 @@ describe('SignInInput component', () => {
     // Arrange
     const mockOnSignIn = vi.fn();
     render(<SignInInput onSignIn={mockOnSignIn} />);
-    const emailInput = screen.getByLabelText('Email');
+    const emailInput = screen.getByPlaceholderText('Email');
     await userEvent.type(emailInput, 'Reza@g.com');
-    const passwordInput = screen.getByLabelText('Password');
+    const passwordInput = screen.getByPlaceholderText('Password');
     await userEvent.type(passwordInput, 'rahasia');
     const signInButton = screen.getByRole('button');
 

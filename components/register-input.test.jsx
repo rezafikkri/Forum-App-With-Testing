@@ -29,7 +29,7 @@ describe('RegisterInput component', () => {
   test('Should handle name typing correctly', async () => {
     // Arrange
     render(<RegisterInput onRegister={() => {}} />);
-    const nameInput = screen.getByLabelText('Name');
+    const nameInput = screen.getByPlaceholderText(/Name/i);
 
     // Action
     await userEvent.type(nameInput, 'Reza Sariful Fikri');
@@ -41,7 +41,7 @@ describe('RegisterInput component', () => {
   test('Should handle email typing correctly', async () => {
     // Arrange
     render(<RegisterInput onRegister={() => {}} />);
-    const emailInput = screen.getByLabelText('Email');
+    const emailInput = screen.getByPlaceholderText(/Email/i);
 
     // Action
     await userEvent.type(emailInput, 'fikkri@test.com');
@@ -53,7 +53,7 @@ describe('RegisterInput component', () => {
   test('Should handle password typing correctly', async () => {
     // Arrange
     render(<RegisterInput onRegister={() => {}} />);
-    const passwordInput = screen.getByLabelText('Password');
+    const passwordInput = screen.getByPlaceholderText(/Password/i);
 
     // Action
     await userEvent.type(passwordInput, 'rahasia');
@@ -66,11 +66,11 @@ describe('RegisterInput component', () => {
     // Arrange
     const mockOnRegister = vi.fn();
     render(<RegisterInput onRegister={mockOnRegister} />);
-    const nameInput = screen.getByLabelText('Name');
+    const nameInput = screen.getByPlaceholderText(/Name/i);
     await userEvent.type(nameInput, 'Reza');
-    const emailInput = screen.getByLabelText('Email');
+    const emailInput = screen.getByPlaceholderText(/Email/i);
     await userEvent.type(emailInput, 'Reza@g.com');
-    const passwordInput = screen.getByLabelText('Password');
+    const passwordInput = screen.getByPlaceholderText(/Password/i);
     await userEvent.type(passwordInput, 'rahasia');
     const registerButton = screen.getByRole('button');
 
