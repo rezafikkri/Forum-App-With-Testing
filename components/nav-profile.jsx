@@ -31,7 +31,7 @@ export default function NavProfile() {
         <li>
           <button
             type="button"
-            className="hover:bg-red-50 hover:text-red-800"
+            className="hover:bg-red-50 hover:text-red-800 active:!bg-red-600 active:!text-gray-50"
             onClick={handleSignOut}
           >
             Sign Out
