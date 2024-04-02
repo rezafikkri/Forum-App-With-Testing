@@ -8,6 +8,7 @@ import { asyncPopulateUsersThreadsAndCategories } from '@/lib/shared/action';
 import { setCategoryActionCreator } from '@/lib/categories/action';
 import ThreadsFilter from '@/components/threads-filter';
 import { asyncUpVoteThread, asyncDownVoteThread, asyncNeutralVoteThread } from '@/lib/threads/action';
+import Alert from '@/components/alert';
 
 export default function Home() {
   const dispatch = useAppDispatch();
