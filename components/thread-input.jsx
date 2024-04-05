@@ -3,15 +3,22 @@
 import useInput from '@/hooks/use-input';
 import { useState } from 'react';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 import Editor from './editor';
 
-export default function ThreadInput() {
+export default function ThreadInput({ onCreateThread }) {
   const [title, handleTitleChange] = useInput('');
   const [category, handleCategoryChange] = useInput('');
   const [body, setBody] = useState('');
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    onCreateThread({ title, category, body });
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label className="form-control w-full">
         <div className="label">
           <span className="label-text">Title</span>
@@ -48,6 +55,21 @@ export default function ThreadInput() {
         </div>
       </label>
       <Editor value={body} onValueChange={setBody} placeholder="Enter thread body" />
+      <div className="label">
+        <span className="label-text-alt">
+          The body thread uses
+          <b> markdown language</b>
+          <span>, if you don't understand, please read the </span>
+          <Link
+            href="https://www.markdownguide.org/basic-syntax"
+            target="_blank"
+            className="link link-neutral"
+          >
+            <span>markdown guide </span>
+            <i className="bi bi-arrow-up-right" />.
+          </Link>
+        </span>
+      </div>
       <div className="flex justify-end mt-4">
         <Link href="/" className="btn btn-outline me-2">Cancel</Link>
         <button type="submit" className="btn btn-primary">Save</button>
@@ -55,3 +77,7 @@ export default function ThreadInput() {
     </form>
   );
 }
+
+ThreadInput.propTypes = {
+  onCreateThread: PropTypes.func.isRequired,
+};
