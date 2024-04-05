@@ -7,7 +7,7 @@ import { useAppDispatch } from '@/hooks/redux-hooks';
 import SignInInput from '@/components/sign-in-input';
 import { asyncSetAuthUser } from '@/lib/authUser/action';
 
-export default function SignIn() {
+export default function Page() {
   const dispatch = useAppDispatch();
   const router = useRouter();
 

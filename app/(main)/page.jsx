@@ -10,7 +10,7 @@ import ThreadsFilter from '@/components/threads-filter';
 import { asyncUpVoteThread, asyncDownVoteThread, asyncNeutralVoteThread } from '@/lib/threads/action';
 import Alert from '@/components/alert';
 
-export default function Home() {
+export default function Page() {
   const dispatch = useAppDispatch();
   const authUser = useAppSelector((states) => states.authUser);
   const users = useAppSelector((states) => states.users);
