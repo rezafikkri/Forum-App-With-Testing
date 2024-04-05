@@ -1,0 +1,63 @@
+.w-md-editor {
+  border-radius: 8px;
+  font-family: var(--font-open-sans);
+}
+
+.w-md-editor-toolbar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 5px;
+}
+
+.w-md-editor-toolbar li > button {
+  height: auto;
+  border-radius: 5px;
+  margin: 0px;
+  color: rgb(75 85 99);
+}
+
+.w-md-editor-toolbar li > button span {
+  line-height: 1.125rem;
+}
+
+.w-md-editor-toolbar li.active > button,
+.w-md-editor-toolbar li > button:hover {
+  color: #1f2937;
+}
+
+.w-md-editor-toolbar li > button i {
+  line-height: 0;
+}
+
+.w-md-editor-toolbar ul {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.w-md-editor-toolbar li.w-md-editor-toolbar-divider {
+  margin-top: 0px !important;
+  height: 16px;
+}
+
+.w-md-editor-text,
+.w-md-editor-preview {
+  padding: 1rem;
+}
+
+.w-md-editor-text-pre, .w-md-editor-text-input, .w-md-editor-text > .w-md-editor-text-pre {
+  font-family: var(--font-open-sans) !important;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.w-md-editor-text-pre > code {
+  font-family: var(--font-open-sans) !important;
+  font-size: 1rem !important;
+  line-height: 1.5rem !important;
+}
+
+.w-md-editor-bar {
+  margin-right: 2px;
+  margin-bottom: 2px;
+}

@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 import StoreProvider from './store-provider';
 import Loading from '../components/loading';
 import IsPreload from './is-preload';
-import './globals.css';
+import '../styles/globals.css';
 import '../node_modules/bootstrap-icons/font/bootstrap-icons.min.css';
 
 const openSans = OpenSans({
   subsets: ['latin'],
+  variable: '--font-open-sans',
 });
 
 export const metadata = {
@@ -19,7 +20,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light" className="light">
-      <body className={`${openSans.className} bg-base-200 dark:bg-inherit min-h-screen text-gray-800`}>
+      <body className={`${openSans.className} ${openSans.variable} bg-base-200 dark:bg-inherit min-h-screen text-gray-800`}>
         <StoreProvider>
           <Loading />
           <IsPreload />
