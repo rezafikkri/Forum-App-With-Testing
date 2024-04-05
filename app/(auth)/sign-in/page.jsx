@@ -29,7 +29,7 @@ export default function SignIn() {
 
   return (
     <>
-      <h1 className="font-extrabold text-3xl mb-2 pt-12">Sign In</h1>
+      <h1 className="font-extrabold text-3xl mb-2 pt-20">Sign In</h1>
       <p className="mb-6">Hi, welcome</p>
       {signInError && <Alert message={signInError} onClose={resetSignInErrorState} />}
       <SignInInput onSignIn={handleSignIn} />
