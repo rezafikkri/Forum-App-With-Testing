@@ -1,6 +1,13 @@
 .w-md-editor {
   border-radius: 8px;
   font-family: var(--font-open-sans);
+  box-shadow: none;
+  border: 1px solid rgb(209 213 219);
+}
+
+.w-md-editor:focus-within {
+  outline: 2px solid rgb(209 213 219);
+  outline-offset: 2px;
 }
 
 .w-md-editor-toolbar {
