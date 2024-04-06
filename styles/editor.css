@@ -14,6 +14,7 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding: 5px;
+  background-color: #F6F8FA;
 }
 
 .w-md-editor-toolbar li > button {

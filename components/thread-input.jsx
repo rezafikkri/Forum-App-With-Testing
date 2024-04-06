@@ -71,7 +71,7 @@ export default function ThreadInput({ onCreateThread }) {
         </span>
       </div>
       <div className="flex justify-end mt-4">
-        <Link href="/" className="btn btn-outline me-2">Cancel</Link>
+        <Link href="/" className="btn btn-outline me-3">Cancel</Link>
         <button type="submit" className="btn btn-primary">Save</button>
       </div>
     </form>

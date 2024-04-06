@@ -10,11 +10,11 @@ const config = {
   },
   darkMode: 'class',
   plugins: [
-    require("daisyui"),
     require('@tailwindcss/typography'),
+    require('daisyui'),
   ],
   daisyui: {
-    themes: ["light", "dark"],
+    themes: ['light'],
   },
 };
 

@@ -19,7 +19,7 @@ export default function Editor({ value, onValueChange, placeholder }) {
       .use(rehypeStringify)
       .processSync(source);
     
-    return <SanitizeHTML className="prose" html={String(contentHTML)} />;
+    return <SanitizeHTML className="prose text-gray-800" html={String(contentHTML)} />;
   }
 
   const commandsFilter = (command, isExtra) => {
