@@ -6,9 +6,10 @@ import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-import SanitizeHTML from './sanitize-html';
+import SanitizeHTML from '../sanitize-html';
+import { CodePreview, CodeEdit } from './preview';
 
-import '../styles/editor.css';
+import '../../styles/editor.css';
 
 export default function Editor({ value, onValueChange, placeholder }) {
   function customPreview(source, store, dispatch) {
@@ -22,7 +23,7 @@ export default function Editor({ value, onValueChange, placeholder }) {
   }
 
   const commandsFilter = (command, isExtra) => {
-    // disabled unnecessary command and modify command icon
+    // modify command icon
     switch (command.name) {
       case 'bold':
         return { ...command, icon: <i className="bi bi-type-bold text-lg" /> };
@@ -34,13 +35,23 @@ export default function Editor({ value, onValueChange, placeholder }) {
         return { ...command, icon: <i className="bi bi-code text-lg" /> };
       case 'image':
         return { ...command, icon: <i className="bi bi-card-image text-lg" /> }
-      case 'preview':
-        return { ...command, icon: <span className="">Preview</span> };
-      case 'edit':
-        return { ...command, icon: <span className="">Write</span> };
       default:
         return command;
     }
+  };
+
+  const codePreview = {
+    name: 'preview',
+    keyCommand: 'preview',
+    value: 'preview',
+    icon: <CodePreview />,
+  };
+
+  const codeEdit = {
+    name: 'edit',
+    keyCommand: 'preview',
+    value: 'edit',
+    icon: <CodeEdit />
   };
 
   return (
@@ -51,8 +62,8 @@ export default function Editor({ value, onValueChange, placeholder }) {
         textareaProps={{ placeholder }}
         preview="edit"
         commands={[
-          commands.codeEdit,
-          commands.codePreview,
+          codeEdit,
+          codePreview,
         ]}
         extraCommands={[
           commands.bold,
@@ -62,7 +73,6 @@ export default function Editor({ value, onValueChange, placeholder }) {
           commands.image,
         ]}
         commandsFilter={commandsFilter}
-        minHeight="100%"
         components={{
           preview: customPreview,
         }}
