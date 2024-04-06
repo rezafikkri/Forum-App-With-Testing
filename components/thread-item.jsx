@@ -2,7 +2,7 @@ import Link from 'next/link';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { stripHtml, isSignedInUserVoted } from '@/lib/utils';
+import { stripHtml, isSignedInUserVoted, stripMarkdown } from '@/lib/utils';
 import { useAppSelector } from '@/hooks/redux-hooks';
 
 export default function ThreadItem({
@@ -22,7 +22,8 @@ export default function ThreadItem({
 
   const authUser = useAppSelector((states) => states.authUser);
 
-  const stripedBody = stripHtml(body);
+  let stripedBody = stripHtml(body);
+  stripedBody = stripMarkdown(stripedBody);
   const bodyCountChr = stripedBody.length;
   const dots = bodyCountChr <= 80 ? '' : '...';
 
