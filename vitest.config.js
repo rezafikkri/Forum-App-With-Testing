@@ -5,5 +5,10 @@ export default defineConfig({
   plugins: [react()],
   test: {
     environment: 'jsdom',
+    alias: {
+      '@/components/': new URL('./components/', import.meta.url).pathname,
+      '@/hooks/': new URL('./hooks/', import.meta.url).pathname,
+      '@/lib/': new URL('./lib/', import.meta.url).pathname,
+    },
   },
 });
