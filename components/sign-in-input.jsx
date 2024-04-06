@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import useInput from '../hooks/use-input';
 
 export default function SignInInput({ onSignIn }) {
-  const [email, onEmailChange] = useInput('');
-  const [password, onPasswordChange] = useInput('');
+  const [email, handleEmailChange] = useInput('');
+  const [password, handlePasswordChange] = useInput('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function SignInInput({ onSignIn }) {
             className="grow"
             placeholder="Email"
             value={email}
-            onChange={onEmailChange}
+            onChange={handleEmailChange}
           />
         </label>
         <label className="input input-bordered flex items-center gap-2">
@@ -34,7 +34,7 @@ export default function SignInInput({ onSignIn }) {
             className="grow"
             placeholder="Password"
             value={password}
-            onChange={onPasswordChange}
+            onChange={handlePasswordChange}
           />
         </label>
         <button type="submit" className="btn btn-primary mt-1">Sign In</button>

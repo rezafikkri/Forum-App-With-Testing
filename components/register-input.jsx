@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import useInput from '../hooks/use-input';
 
 export default function RegisterInput({ onRegister }) {
-  const [name, onNameChange] = useInput('');
-  const [email, onEmailChange] = useInput('');
-  const [password, onPasswordChange] = useInput('');
+  const [name, handleNameChange] = useInput('');
+  const [email, handleEmailChange] = useInput('');
+  const [password, handlePasswordChange] = useInput('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function RegisterInput({ onRegister }) {
             placeholder="Enter your name"
             className="input input-bordered w-full"
             value={name}
-            onChange={onNameChange}
+            onChange={handleNameChange}
           />
         </label>
         <label className="form-control w-full">
@@ -39,7 +39,7 @@ export default function RegisterInput({ onRegister }) {
             placeholder="Enter your email"
             className="input input-bordered w-full"
             value={email}
-            onChange={onEmailChange}
+            onChange={handleEmailChange}
           />
         </label>
         <label className="form-control w-full">
@@ -51,7 +51,7 @@ export default function RegisterInput({ onRegister }) {
             placeholder="Enter your password"
             className="input input-bordered w-full"
             value={password}
-            onChange={onPasswordChange}
+            onChange={handlePasswordChange}
           />
         </label>
         <button type="submit" className="btn btn-primary mt-2">Register</button>
