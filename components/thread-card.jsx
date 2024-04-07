@@ -122,7 +122,7 @@ export default function ThreadCard({ id }) {
           html={String(vfile)}
         />
       </div>
-      <div className="flex gap-5 text-gray-500 font-light">
+      <div className="flex gap-4 text-gray-500 font-light">
         <div className="me-5">
           <i className="bi bi-hash" />
           <span>{category}</span>
