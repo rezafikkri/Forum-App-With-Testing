@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -11,14 +11,23 @@ import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import ThreadCardSkeleton from './thread-card-skeleton';
-import { asyncReceiveDetailThread, clearDetailThreadActionCreator } from '@/lib/detailThread/action';
+import {
+  asyncReceiveDetailThread,
+  clearDetailThreadActionCreator,
+  asyncUpVoteDetailThread,
+  asyncDownVoteDetailThread,
+  asyncNeutralVoteDetailThread,
+} from '@/lib/detailThread/action';
 import SanitizeHTML from './sanitize-html';
+import { isSignedInUserVoted } from '@/lib/utils';
 
 export default function ThreadCard({ id }) {
   dayjs.extend(relativeTime);
 
   const dispatch = useAppDispatch();
   const detailThread = useAppSelector((states) => states.detailThread);
+  const [voteDetailThreadError, setVoteDetailThreadError] = useState(null);
+  const authUser = useAppSelector((states) => states.authUser);
 
   useEffect(() => {
     dispatch(asyncReceiveDetailThread(id));
@@ -33,6 +42,7 @@ export default function ThreadCard({ id }) {
   }
 
   const {
+    id: threadId,
     title,
     body,
     category,
@@ -41,6 +51,52 @@ export default function ThreadCard({ id }) {
     upVotesBy,
     downVotesBy,
   } = detailThread;
+
+  function resetVoteDetailThreadErrorState() {
+    setVoteDetailThreadError(null);
+  }
+
+  function handleUpVoteDetailThread() {
+    // if user is not sign in yet
+    if (authUser === null) {
+      setVoteDetailThreadError('You must be signed in to upvote thread!');
+      return false;
+    }
+
+    // check, if signed in user not upvote yet
+    if (!upVotesBy.includes(authUser.id)) {
+      // check, if signed in user has downvoted
+      let isDownVoted = false;
+      if (downVotesBy.includes(authUser.id)) isDownVoted = true;
+
+      dispatch(asyncUpVoteDetailThread({ threadId, isDownVoted }));
+    } else {
+      dispatch(asyncNeutralVoteDetailThread({ threadId, target: 'up-vote' }));
+    }
+
+    return true;
+  }
+
+  function handleDownVoteDetailThread() {
+    // if user is not sign in yet
+    if (authUser === null) {
+      setVoteDetailThreadError('You must be signed in to downvote thread!');
+      return false;
+    }
+
+    // check, if signed in user not downvote yet
+    if (!downVotesBy.includes(authUser.id)) {
+      // check, if signed in user has upvoted
+      let isUpVoted = false;
+      if (upVotesBy.includes(authUser.id)) isUpVoted = true;
+
+      dispatch(asyncDownVoteDetailThread({ threadId, isUpVoted }));
+    } else {
+      dispatch(asyncNeutralVoteDetailThread({ threadId, target: 'down-vote' }));
+    }
+
+    return true;
+  }
 
   // process body markdown and html string for render
   const vfile = unified()
@@ -74,16 +130,19 @@ export default function ThreadCard({ id }) {
 
         <button
           type="button"
-          className="text-primary"
+          className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}
+          onClick={handleUpVoteDetailThread}
         >
-          <i className="me-1 bi bi-arrow-up-circle-fill" />
-          <span>20</span>
+          <i className={`me-1 bi bi-arrow-up-circle${isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? '-fill' : ''}`} />
+          <span>{upVotesBy.length}</span>
         </button>
         <button
           type="button"
+          className={isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? 'text-primary' : ''}
+          onClick={handleDownVoteDetailThread}
         >
-          <i className="me-1 bi bi-arrow-down-circle" />
-          <span>0</span>
+          <i className={`me-1 bi bi-arrow-down-circle${isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? '-fill' : ''}`} />
+          <span>{downVotesBy.length}</span>
         </button>
       </div>
     </article>
