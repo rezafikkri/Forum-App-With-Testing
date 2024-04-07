@@ -10,10 +10,8 @@ export default function ThreadCardSkeleton() {
 
       <div className="skeleton h-4 mb-2" />
       <div className="skeleton h-4 w-11/12 mb-2" />
-      <div className="skeleton h-4 mb-2" />
       <div className="skeleton h-4 w-10/12 mb-2" />
-      <div className="skeleton h-4 w-10/12 mb-2" />
-      <div className="skeleton h-4 w-1/3 mb-5" />
+      <div className="skeleton h-4 w-10/12 mb-5" />
 
       <div className="flex gap-2">
         <div className="skeleton h-3 w-20" />
