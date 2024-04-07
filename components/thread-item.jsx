@@ -56,12 +56,12 @@ export default function ThreadItem({
           <p className="text-gray-700 leading-snug">{stripedBody.substring(0, 80) + dots}</p>
         </div>
       </Link>
-      <div className="flex gap-4 text-gray-500 text-sm font-light">
+      <div className="flex gap-5 text-gray-500 text-sm font-light">
         <div>
           <i className="bi bi-hash" />
           <span>{category}</span>
         </div>
-        <div className="me-5">
+        <div className="me-6">
           <i className="bi bi-clock me-1" />
           <time>{dayjs().to(dayjs(createdAt))}</time>
         </div>
