@@ -1,3 +1,4 @@
+import Comments from '@/components/comments';
 import ThreadCard from '@/components/thread-card';
 import api from '@/lib/api';
 
@@ -18,6 +19,7 @@ export default function Page({ params }) {
         <h1 className="font-extrabold text-3xl">Detail Thread</h1>
       </header>
       <ThreadCard id={threadId} />
+      <Comments threadId={threadId} />
     </>
   );
 }
