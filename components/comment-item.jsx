@@ -7,6 +7,8 @@ import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 import rehypeRaw from 'rehype-raw';
 import SanitizeHTML from './sanitize-html';
+import { isSignedInUserVoted } from '@/lib/utils';
+import { useAppSelector } from '@/hooks/redux-hooks';
 
 export default function CommentItem({
   id,
@@ -15,8 +17,12 @@ export default function CommentItem({
   owner,
   upVotesBy,
   downVotesBy,
+  onUpVote,
+  onDownVote,
 }) {
   dayjs.extend(relativeTime);
+
+  const authUser = useAppSelector((states) => states.authUser);
 
   // process comment content markdown and html string for render
   const vfile = unified()
@@ -25,6 +31,18 @@ export default function CommentItem({
     .use(rehypeRaw)
     .use(rehypeStringify)
     .processSync(content);
+
+  function handleUpVote(e) {
+    e.preventDefault();
+
+    onUpVote({ commentId: id, upVotesBy, downVotesBy });
+  }
+
+  function handleDownVote(e) {
+    e.preventDefault();
+
+    onDownVote({ commentId: id, downVotesBy, upVotesBy });
+  }
 
   return (
     <article className="bg-white border border-gray-300 p-4 mb-1.5 first:rounded-t-lg last:rounded-b-lg">
@@ -47,14 +65,18 @@ export default function CommentItem({
       <div className="flex font-light text-gray-500 gap-4 text-sm">
         <button
           type="submit"
+          className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}
+          onClick={handleUpVote}
         >
-          <i className="bi bi-arrow-up-circle me-1" />
+          <i className={`me-1 bi bi-arrow-up-circle${isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? '-fill' : ''}`} />
           <span>{upVotesBy.length}</span>
         </button>
         <button
           type="button"
+          className={isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? 'text-primary' : ''}
+          onClick={handleDownVote}
         >
-          <i className="bi bi-arrow-down-circle me-1" />
+          <i className={`me-1 bi bi-arrow-down-circle${isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? '-fill' : ''}`} />
           <span>{downVotesBy.length}</span>
         </button>
       </div>
@@ -78,6 +100,8 @@ const commentItemShape = {
 
 CommentItem.propTypes = {
   ...commentItemShape,
+  onUpVote: PropTypes.func.isRequired,
+  onDownVote: PropTypes.func.isRequired,
 };
 
 export { commentItemShape };
