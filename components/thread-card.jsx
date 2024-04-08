@@ -22,7 +22,7 @@ import SanitizeHTML from './sanitize-html';
 import { isSignedInUserVoted } from '@/lib/utils';
 import Alert from './alert';
 
-export default function ThreadCard({ id }) {
+export default function ThreadCard({ threadId }) {
   dayjs.extend(relativeTime);
 
   const dispatch = useAppDispatch();
@@ -31,19 +31,19 @@ export default function ThreadCard({ id }) {
   const authUser = useAppSelector((states) => states.authUser);
 
   useEffect(() => {
-    dispatch(asyncReceiveDetailThread(id));
+    dispatch(asyncReceiveDetailThread(threadId));
 
     return () => {
       dispatch(clearDetailThreadActionCreator());
     };
-  }, [id, dispatch]);
+  }, [threadId, dispatch]);
 
   if (detailThread === null) {
     return <ThreadCardSkeleton />;
   }
 
   const {
-    id: threadId,
+    id: threadIdDb,
     title,
     body,
     category,
@@ -70,9 +70,9 @@ export default function ThreadCard({ id }) {
       let isDownVoted = false;
       if (downVotesBy.includes(authUser.id)) isDownVoted = true;
 
-      dispatch(asyncUpVoteDetailThread({ threadId, isDownVoted }));
+      dispatch(asyncUpVoteDetailThread({ threadId: threadIdDb, isDownVoted }));
     } else {
-      dispatch(asyncNeutralVoteDetailThread({ threadId, target: 'up-vote' }));
+      dispatch(asyncNeutralVoteDetailThread({ threadId: threadIdDb, target: 'up-vote' }));
     }
 
     return true;
@@ -91,9 +91,9 @@ export default function ThreadCard({ id }) {
       let isUpVoted = false;
       if (upVotesBy.includes(authUser.id)) isUpVoted = true;
 
-      dispatch(asyncDownVoteDetailThread({ threadId, isUpVoted }));
+      dispatch(asyncDownVoteDetailThread({ threadId: threadIdDb, isUpVoted }));
     } else {
-      dispatch(asyncNeutralVoteDetailThread({ threadId, target: 'down-vote' }));
+      dispatch(asyncNeutralVoteDetailThread({ threadId: threadIdDb, target: 'down-vote' }));
     }
 
     return true;
@@ -158,5 +158,5 @@ export default function ThreadCard({ id }) {
 }
 
 ThreadCard.propTypes = {
-  id: PropTypes.string.isRequired,
+  threadId: PropTypes.string.isRequired,
 };

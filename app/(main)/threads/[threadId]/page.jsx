@@ -29,7 +29,7 @@ export default function Page({ params }) {
       <header className="mt-20 mb-9">
         <h1 className="font-extrabold text-3xl">Detail Thread</h1>
       </header>
-      <ThreadCard id={threadId} />
+      <ThreadCard threadId={threadId} />
       <Comments threadId={threadId} signIn={signIn} />
     </>
   );
