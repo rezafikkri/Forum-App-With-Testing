@@ -11,6 +11,15 @@ import api from '@/lib/api';
 //   }));
 // }
 
+export async function generateMetadata({ params }) {
+  const { threadId } = params;
+  const threads = await api.getDetailThread(threadId);
+
+  return {
+    title: threads.title,
+  }
+}
+
 export default function Page({ params }) {
   const signIn = cookies().get('signIn')?.value;
   const { threadId } = params;

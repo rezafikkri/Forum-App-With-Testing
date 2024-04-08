@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
@@ -114,5 +116,3 @@ ThreadItem.propTypes = {
   onUpVote: PropTypes.func.isRequired,
   onDownVote: PropTypes.func.isRequired,
 };
-
-export { threadItemShape };

@@ -1,11 +1,22 @@
 'use client';
 
-import { useAppSelector } from '@/hooks/redux-hooks';
-import PropTypes from 'prop-types';
+import { useAppSelector, useAppDispatch } from '@/hooks/redux-hooks';
+import { setCategoryActionCreator } from '@/lib/categories/action';
 
-export default function ThreadsFilter({ threadsLength, categories, onCategoryChange }) {
+export default function ThreadsFilter() {
+  const dispatch = useAppDispatch();
+  const categories = useAppSelector((states) => states.categories);
   const loadingBar = useAppSelector((states) => states.loadingBar);
   const threads = useAppSelector((states) => states.threads);
+
+  let threadsLength = 0;
+  if (threads !== null) {
+    threadsLength = threads.length;
+  }
+
+  function handleCategoryChange(e) {
+    dispatch(setCategoryActionCreator(e.target.value));
+  }
 
   return (
     <>
@@ -25,7 +36,7 @@ export default function ThreadsFilter({ threadsLength, categories, onCategoryCha
           className="select select-bordered w-full select-sm rounded-bl-none rounded-tl-none min-w-28"
           id="category"
           value={categories.selected}
-          onChange={onCategoryChange}
+          onChange={handleCategoryChange}
         >
           {categories.values.map((category) => (
             <option key={category} value={category}>{category}</option>
@@ -35,14 +46,3 @@ export default function ThreadsFilter({ threadsLength, categories, onCategoryCha
     </>
   );
 }
-
-const categoriesShape = {
-  values: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selected: PropTypes.string.isRequired,
-};
-
-ThreadsFilter.propTypes = {
-  threadsLength: PropTypes.number.isRequired,
-  categories: PropTypes.shape(categoriesShape).isRequired,
-  onCategoryChange: PropTypes.func.isRequired,
-};

@@ -1,23 +1,41 @@
 'use client';
 
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import PropTypes from 'prop-types';
+import Alert from '@/components/alert';
 import useInput from '../hooks/use-input';
+import { useAppDispatch } from '@/hooks/redux-hooks';
+import { asyncRegisterUser } from '@/lib/users/action';
 
-export default function RegisterInput({ onRegister }) {
+export default function RegisterInput() {
   const [name, handleNameChange] = useInput('');
   const [email, handleEmailChange] = useInput('');
   const [password, handlePasswordChange] = useInput('');
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  function handleSubmit(e) {
+  const [registerError, setRegisterError] = useState(null);
+
+  function handleRegister(e) {
     e.preventDefault();
 
-    onRegister({ name, email, password });
+    dispatch(asyncRegisterUser({ name, email, password }))
+      .then(() => {
+        router.push('/sign-in');
+      }).catch((error) => {
+        setRegisterError(error.message);
+      });
+  }
+
+  function resetRegisterErrorState() {
+    setRegisterError(null);
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-y-1">
+      {registerError && <Alert message={registerError} onClose={resetRegisterErrorState} />}
+      <form onSubmit={handleRegister} className="flex flex-col gap-y-1">
         <label className="form-control w-full">
           <div className="label">
             <span className="label-text">Name</span>
@@ -63,7 +81,3 @@ export default function RegisterInput({ onRegister }) {
     </>
   );
 }
-
-RegisterInput.propTypes = {
-  onRegister: PropTypes.func.isRequired,
-};

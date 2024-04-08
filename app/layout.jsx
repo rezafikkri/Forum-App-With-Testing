@@ -13,7 +13,8 @@ const openSans = OpenSans({
 
 export const metadata = {
   title: {
-    default: 'Forum App With Testing',
+    template: '%s | Forum App',
+    default: 'Forum App',
   },
 };
 

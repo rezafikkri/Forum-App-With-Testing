@@ -1,22 +1,41 @@
 'use client';
 
 import Link from 'next/link';
-import PropTypes from 'prop-types';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Alert from '@/components/alert';
+import { useAppDispatch } from '@/hooks/redux-hooks';
 import useInput from '../hooks/use-input';
+import { asyncSetAuthUser } from '@/lib/authUser/action';
 
-export default function SignInInput({ onSignIn }) {
+export default function SignInInput() {
   const [email, handleEmailChange] = useInput('');
   const [password, handlePasswordChange] = useInput('');
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  function handleSubmit(e) {
+  const [signInError, setSignInError] = useState(null);
+
+  function handleSignIn(e) {
     e.preventDefault();
 
-    onSignIn({ email, password });
+    dispatch(asyncSetAuthUser({ email, password }))
+      .then(() => {
+        router.push('/');
+      })
+      .catch((error) => {
+        setSignInError(error.message);
+      });
+  }
+
+  function resetSignInErrorState() {
+    setSignInError(null);
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-y-3 mt-4">
+      {signInError && <Alert message={signInError} onClose={resetSignInErrorState} />}
+      <form onSubmit={handleSignIn} className="flex flex-col gap-y-3 mt-4">
         <label className="input input-bordered flex items-center gap-2">
           <i className="bi bi-envelope-fill text-gray-500 leading-none"></i>
           <input
@@ -46,7 +65,3 @@ export default function SignInInput({ onSignIn }) {
     </>
   );
 }
-
-SignInInput.propTypes = {
-  onSignIn: PropTypes.func.isRequired,
-};
