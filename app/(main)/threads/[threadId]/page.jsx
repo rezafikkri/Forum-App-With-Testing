@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import Comments from '@/components/comments';
 import ThreadCard from '@/components/thread-card';
 import api from '@/lib/api';
@@ -11,6 +12,7 @@ import api from '@/lib/api';
 // }
 
 export default function Page({ params }) {
+  const signIn = cookies().get('signIn')?.value;
   const { threadId } = params;
   
   return (
@@ -19,7 +21,7 @@ export default function Page({ params }) {
         <h1 className="font-extrabold text-3xl">Detail Thread</h1>
       </header>
       <ThreadCard id={threadId} />
-      <Comments threadId={threadId} />
+      <Comments threadId={threadId} signIn={signIn} />
     </>
   );
 }

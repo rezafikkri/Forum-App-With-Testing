@@ -1,11 +1,12 @@
 'use client';
 
-import { useAppSelector } from '@/hooks/redux-hooks';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
+import { useAppSelector } from '@/hooks/redux-hooks';
 import CommentInput from './comment-input';
 import CommentsList from './comments-list';
 
-export default function Comments({ threadId }) {
+export default function Comments({ threadId, signIn }) {
   const comments = useAppSelector((states) => states.detailThread?.comments);
 
   return (
@@ -20,7 +21,15 @@ export default function Comments({ threadId }) {
           </>
         )}
       </h3>
-      <CommentInput />
+      {signIn ? (
+        <CommentInput />
+      ) : (
+        <p className="text-gray-600">
+          You must be
+          <Link href="/sign-in" className="link link-neutral mx-1">Sign In</Link>
+          to comment!
+        </p>
+      )}
       <CommentsList comments={comments} />
     </section>
   );
@@ -28,4 +37,5 @@ export default function Comments({ threadId }) {
 
 Comments.propTypes = {
   threadId: PropTypes.string.isRequired,
+  signIn: PropTypes.string,
 };
