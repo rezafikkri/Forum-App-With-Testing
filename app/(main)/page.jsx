@@ -7,7 +7,11 @@ import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { asyncPopulateUsersThreadsAndCategories } from '@/lib/shared/action';
 import { setCategoryActionCreator } from '@/lib/categories/action';
 import ThreadsFilter from '@/components/threads-filter';
-import { asyncUpVoteThread, asyncDownVoteThread, asyncNeutralVoteThread } from '@/lib/threads/action';
+import {
+  asyncUpVoteThread,
+  asyncDownVoteThread,
+  asyncNeutralVoteThread,
+} from '@/lib/threads/action';
 import Alert from '@/components/alert';
 
 export default function Page() {
@@ -72,10 +76,15 @@ export default function Page() {
     dispatch(asyncPopulateUsersThreadsAndCategories());
   }, [dispatch]);
 
-  let threadsList = threads.map((thread) => ({
-    ...thread,
-    owner: users.find((user) => user.id === thread.ownerId),
-  }));
+  let threadsList = [];
+  let threadsLength = 0;
+  if (threads !== null) {
+    threadsLength = threads.length;
+    threadsList = threads.map((thread) => ({
+      ...thread,
+      owner: users.find((user) => user.id === thread.ownerId),
+    }));
+  }
 
   // if category selected != all
   if (categories.selected !== 'all') {
@@ -92,7 +101,7 @@ export default function Page() {
         <div className="flex justify-between items-center">
           <ThreadsFilter
             categories={categories}
-            threadsLength={threadsList.length}
+            threadsLength={threadsLength}
             onCategoryChange={handleCategoryChange}
           />
         </div>

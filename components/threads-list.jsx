@@ -9,7 +9,7 @@ export default function ThreadsList({ threads, onUpVote, onDownVote }) {
 
   return (
     <article>
-      {(loadingBar.default !== 0 && threads.length === 0) ? (
+      {(threads === null || (loadingBar.default !== 0 && threads.length === 0)) ? (
         <>
           <ThreadItemSkeleton />
           <ThreadItemSkeleton />

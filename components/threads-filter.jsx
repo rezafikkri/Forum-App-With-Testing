@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 
 export default function ThreadsFilter({ threadsLength, categories, onCategoryChange }) {
   const loadingBar = useAppSelector((states) => states.loadingBar);
+  const threads = useAppSelector((states) => states.threads);
 
   return (
     <>
       <p>
-        {(loadingBar.default !== 0 && threadsLength === 0) ? (
+        {(threads === null || (loadingBar.default !== 0 && threadsLength === 0)) ? (
           <span className="skeleton h-4 w-28 inline-block" />
         ) : `${threadsLength} threads`} 
       </p>
