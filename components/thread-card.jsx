@@ -20,6 +20,7 @@ import {
 } from '@/lib/detailThread/action';
 import SanitizeHTML from './sanitize-html';
 import { isSignedInUserVoted } from '@/lib/utils';
+import Alert from './alert';
 
 export default function ThreadCard({ id }) {
   dayjs.extend(relativeTime);
@@ -107,45 +108,52 @@ export default function ThreadCard({ id }) {
     .processSync(body);
 
   return (
-    <article className="bg-white border border-gray-300 p-5 rounded-xl">
-      <div className="mb-7">
-        <div className="avatar items-center text-sm text-gray-500">
-          <div className="w-6 rounded-full me-1.5">
-            <img src={owner.avatar} alt={owner.name} />
+    <>
+      <article className="bg-white border border-gray-300 p-5 rounded-xl">
+        <div className="mb-7">
+          <div className="avatar items-center text-sm text-gray-500">
+            <div className="w-6 rounded-full me-1.5">
+              <img src={owner.avatar} alt={owner.name} />
+            </div>
+            <span>{owner.name}</span>
           </div>
-          <span>{owner.name}</span>
+          <h2 className="text-3xl font-bold">{title}</h2>
+          <time className="text-sm text-gray-500 mb-3 block">{dayjs().to(dayjs(createdAt))}</time>
+          <SanitizeHTML
+            className="prose text-gray-800 prose-lg max-w-none leading-normal mb-5"
+            html={String(vfile)}
+          />
         </div>
-        <h2 className="text-3xl font-bold">{title}</h2>
-        <time className="text-sm text-gray-500 mb-3 block">{dayjs().to(dayjs(createdAt))}</time>
-        <SanitizeHTML
-          className="prose text-gray-800 prose-lg max-w-none leading-normal mb-5"
-          html={String(vfile)}
-        />
-      </div>
-      <div className="flex gap-4 text-gray-500 font-light">
-        <div className="me-5">
-          <i className="bi bi-hash" />
-          <span>{category}</span>
-        </div>
+        <div className="flex gap-4 text-gray-500 font-light">
+          <div className="me-5">
+            <i className="bi bi-hash" />
+            <span>{category}</span>
+          </div>
 
-        <button
-          type="button"
-          className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}
-          onClick={handleUpVoteDetailThread}
-        >
-          <i className={`me-1 bi bi-arrow-up-circle${isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? '-fill' : ''}`} />
-          <span>{upVotesBy.length}</span>
-        </button>
-        <button
-          type="button"
-          className={isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? 'text-primary' : ''}
-          onClick={handleDownVoteDetailThread}
-        >
-          <i className={`me-1 bi bi-arrow-down-circle${isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? '-fill' : ''}`} />
-          <span>{downVotesBy.length}</span>
-        </button>
-      </div>
-    </article>
+          <button
+            type="button"
+            className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}
+            onClick={handleUpVoteDetailThread}
+          >
+            <i className={`me-1 bi bi-arrow-up-circle${isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? '-fill' : ''}`} />
+            <span>{upVotesBy.length}</span>
+          </button>
+          <button
+            type="button"
+            className={isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? 'text-primary' : ''}
+            onClick={handleDownVoteDetailThread}
+          >
+            <i className={`me-1 bi bi-arrow-down-circle${isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? '-fill' : ''}`} />
+            <span>{downVotesBy.length}</span>
+          </button>
+        </div>
+      </article>
+      {voteDetailThreadError && (
+        <div className="toast">
+          <Alert message={voteDetailThreadError} onClose={resetVoteDetailThreadErrorState} type="info" />
+        </div>
+      )}
+    </>
   );
 }
 
