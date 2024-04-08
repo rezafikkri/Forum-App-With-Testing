@@ -22,7 +22,7 @@ export default function Comments({ threadId, signIn }) {
         )}
       </h3>
       {signIn ? (
-        <CommentInput />
+        <CommentInput threadId={threadId} />
       ) : (
         <p className="text-gray-600">
           You must be

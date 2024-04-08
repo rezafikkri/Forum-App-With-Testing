@@ -1,3 +1,5 @@
+'use client';
+
 import PropTypes from 'prop-types';
 import CommentItem from './comment-item';
 import CommentItemSkeleton from './comment-item-skeleton';
