@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -48,12 +49,12 @@ export default function CommentItem({
     <article className="bg-white border border-gray-300 p-4 mb-1.5 first:rounded-t-lg last:rounded-b-lg">
       <div className="mb-4">
         <div className="avatar items-center text-sm mb-2">
-          <div className="w-7 rounded-full me-2">
-            <img src={owner.avatar} alt={owner.name} />
+          <div className="w-5 rounded-full me-2">
+            <Image alt={owner.name} src={owner.avatar} width={20} height={20} />
           </div>
           <div className="!aspect-auto">
-            <span className="block leading-none">{owner.name}</span>
-            <time className="text-gray-500 text-xs">{dayjs().to(dayjs(createdAt))}</time>
+            <span className="leading-none me-1">{owner.name}</span>
+            <time className="text-gray-500 text-xs leading-nono">{`. ${dayjs().to(dayjs(createdAt))}`}</time>
           </div>
         </div>
 

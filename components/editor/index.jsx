@@ -12,17 +12,17 @@ import { CodePreview, CodeEdit } from './preview';
 import '../../styles/editor.css';
 
 export default function Editor({ value, onValueChange, placeholder }) {
-  function customPreview(source, store, dispatch) {
+  function customPreview(source) {
     const contentHTML = unified()
       .use(remarkParse)
       .use(remarkRehype)
       .use(rehypeStringify)
       .processSync(source);
-    
+
     return <SanitizeHTML className="prose text-gray-800" html={String(contentHTML)} />;
   }
 
-  const commandsFilter = (command, isExtra) => {
+  const commandsFilter = (command) => {
     // modify command icon
     switch (command.name) {
       case 'bold':
@@ -34,7 +34,7 @@ export default function Editor({ value, onValueChange, placeholder }) {
       case 'code':
         return { ...command, icon: <i className="bi bi-code text-lg" /> };
       case 'image':
-        return { ...command, icon: <i className="bi bi-card-image text-lg" /> }
+        return { ...command, icon: <i className="bi bi-card-image text-lg" /> };
       default:
         return command;
     }
@@ -51,7 +51,7 @@ export default function Editor({ value, onValueChange, placeholder }) {
     name: 'edit',
     keyCommand: 'preview',
     value: 'edit',
-    icon: <CodeEdit />
+    icon: <CodeEdit />,
   };
 
   return (

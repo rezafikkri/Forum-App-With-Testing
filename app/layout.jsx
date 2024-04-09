@@ -1,10 +1,10 @@
 import { Open_Sans as OpenSans } from 'next/font/google';
 import PropTypes from 'prop-types';
+import 'bootstrap-icons/font/bootstrap-icons.min.css';
 import StoreProvider from './store-provider';
 import Loading from '../components/loading';
 import IsPreload from './is-preload';
 import '../styles/globals.css';
-import '../node_modules/bootstrap-icons/font/bootstrap-icons.min.css';
 
 const openSans = OpenSans({
   subsets: ['latin'],

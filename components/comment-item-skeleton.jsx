@@ -6,7 +6,7 @@ export default function CommentItemSkeleton() {
         <div>
           <div className="skeleton h-4 w-20 mb-1" />
           <div className="skeleton h-3 w-10" />
-        </div>  
+        </div>
       </div>
 
       <div className="skeleton h-4 w-full mb-1.5" />

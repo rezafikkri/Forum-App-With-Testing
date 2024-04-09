@@ -37,7 +37,7 @@ export default function SignInInput() {
       {signInError && <Alert message={signInError} onClose={resetSignInErrorState} />}
       <form onSubmit={handleSignIn} className="flex flex-col gap-y-3 mt-4">
         <label className="input input-bordered flex items-center gap-2">
-          <i className="bi bi-envelope-fill text-gray-500 leading-none"></i>
+          <i className="bi bi-envelope-fill text-gray-500 leading-none" />
           <input
             type="text"
             className="grow"
@@ -47,7 +47,7 @@ export default function SignInInput() {
           />
         </label>
         <label className="input input-bordered flex items-center gap-2">
-          <i className="bi bi-lock-fill text-gray-500 leading-none"></i>
+          <i className="bi bi-lock-fill text-gray-500 leading-none" />
           <input
             type="password"
             className="grow"

@@ -2,12 +2,11 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import Link from 'next/link';
 import { useAppDispatch } from '@/hooks/redux-hooks';
 import { asyncCreateThread } from '@/lib/threads/action';
 import Alert from '@/components/alert';
 import useInput from '@/hooks/use-input';
-import Link from 'next/link';
-import PropTypes from 'prop-types';
 import Editor from './editor';
 
 export default function ThreadInput() {
@@ -79,15 +78,16 @@ export default function ThreadInput() {
           <span className="label-text-alt">
             The body thread uses
             <b> markdown language</b>
-            <span>, if you don't understand, please read the </span>
+            <span>, if you don&apos;t understand, please read the </span>
             <Link
               href="https://www.markdownguide.org/basic-syntax"
               target="_blank"
               className="link link-neutral"
             >
               <span>markdown guide </span>
-              <i className="bi bi-arrow-up-right" />.
+              <i className="bi bi-arrow-up-right" />
             </Link>
+            .
           </span>
         </div>
         <div className="flex justify-end mt-4">

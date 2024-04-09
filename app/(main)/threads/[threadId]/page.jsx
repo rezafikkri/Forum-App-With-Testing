@@ -17,13 +17,13 @@ export async function generateMetadata({ params }) {
 
   return {
     title: threads.title,
-  }
+  };
 }
 
 export default function Page({ params }) {
   const signIn = cookies().get('signIn')?.value;
   const { threadId } = params;
-  
+
   return (
     <>
       <header className="mt-20 mb-9">

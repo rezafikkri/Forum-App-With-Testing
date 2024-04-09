@@ -39,15 +39,16 @@ export default function CommentInput({ threadId }) {
           <span className="label-text-alt">
             The comment use
             <b> markdown language</b>
-            <span>, if you don't understand, please read the </span>
+            <span>, if you don&apos;t understand, please read the </span>
             <Link
               href="https://www.markdownguide.org/basic-syntax"
               target="_blank"
               className="link link-neutral"
             >
               <span>markdown guide </span>
-              <i className="bi bi-arrow-up-right" />.
+              <i className="bi bi-arrow-up-right" />
             </Link>
+            .
           </span>
         </div>
         <div className="text-right mt-1">

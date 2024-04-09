@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { asyncUnsetAuthUser } from '@/lib/authUser/action';
 
@@ -16,16 +17,16 @@ export default function NavProfile() {
       <div tabIndex={0} role="button" className="btn btn-sm btn-circle avatar bg-transparent hover:bg-transparent border-0 ring-2 ring-primary-content ring-offset-0">
         <div className="w-7 rounded-full">
           {authUser ? (
-            <img alt={authUser.name} src={authUser.avatar} />
+            <Image alt={authUser.name} src={authUser.avatar} width={28} height={28} />
           ) : (
-            <div className="skeleton w-7 h-7 rounded-full"></div>
+            <div className="skeleton w-7 h-7 rounded-full" />
           )}
         </div>
       </div>
-      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+      <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
         <li className="menu-title">
           {authUser ? `Signed in as ${authUser.email}` : (
-            <div className="skeleton h-4 w-full"></div>
+            <div className="skeleton h-4 w-full" />
           )}
         </li>
         <li>

@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import CommentItem from './comment-item';
+import CommentItem, { commentItemShape } from './comment-item';
 import CommentItemSkeleton from './comment-item-skeleton';
-import { commentItemShape } from './comment-item';
 import {
   asyncDownVoteComment,
   asyncNeutralVoteComment,
@@ -70,13 +69,13 @@ export default function CommentsList({ comments }) {
         {!comments ? (
           <CommentItemSkeleton />
         ) : comments.map((comment) => (
-            <CommentItem
-              key={comment.id}
-              {...comment}
-              onUpVote={handleUpVoteComment}
-              onDownVote={handleDownVoteComment}
-            />
-          ))}
+          <CommentItem
+            key={comment.id}
+            {...comment}
+            onUpVote={handleUpVoteComment}
+            onDownVote={handleDownVoteComment}
+          />
+        ))}
       </article>
       {voteCommentError && (
         <div className="toast">

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
@@ -113,7 +114,7 @@ export default function ThreadCard({ threadId }) {
         <div className="mb-7">
           <div className="avatar items-center text-sm text-gray-500">
             <div className="w-6 rounded-full me-1.5">
-              <img src={owner.avatar} alt={owner.name} />
+              <Image alt={owner.name} src={owner.avatar} width={24} height={24} />
             </div>
             <span>{owner.name}</span>
           </div>

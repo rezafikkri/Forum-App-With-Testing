@@ -27,7 +27,8 @@ export default function NavMenu() {
           className={`hover:text-primary ${isNavLinkActive('/leaderboards')}`}
         >
           Leaderboards
-        </Link></li>
+        </Link>
+      </li>
     </ul>
   );
 }

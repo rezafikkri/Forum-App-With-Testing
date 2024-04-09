@@ -23,7 +23,7 @@ export default function ThreadsFilter() {
       <p>
         {(threads === null || (loadingBar.default !== 0 && threadsLength === 0)) ? (
           <span className="skeleton h-4 w-28 inline-block" />
-        ) : `${threadsLength} threads`} 
+        ) : `${threadsLength} threads`}
       </p>
       <div className="flex items-center">
         <label

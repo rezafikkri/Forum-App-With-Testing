@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import Image from 'next/image';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { stripHtml, isSignedInUserVoted, stripMarkdown } from '@/lib/utils';
@@ -47,13 +48,13 @@ export default function ThreadItem({
     <article className="bg-white border border-gray-300 p-5 mb-1.5 first:rounded-t-xl last:rounded-b-xl">
       <Link href={`/threads/${id}`}>
         <div className="hover:cursor-pointer mb-4">
-            <div className="avatar items-center text-sm text-gray-500">
-              <div className="w-5 rounded-full me-1">
-                <img src={owner.avatar} />
-              </div>
-              <span>{owner.name}</span>
+          <div className="avatar items-center text-sm text-gray-500">
+            <div className="w-5 rounded-full me-1">
+              <Image src={owner.avatar} width={20} height={20} alt={owner.name} />
             </div>
-          
+            <span>{owner.name}</span>
+          </div>
+
           <h2 className="text-xl font-bold leading-tight">{title}</h2>
           <p className="text-gray-700 leading-snug">{stripedBody.substring(0, 80) + dots}</p>
         </div>

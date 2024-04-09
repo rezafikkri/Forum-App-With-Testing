@@ -2,7 +2,7 @@ import { EditorContext } from '@uiw/react-md-editor';
 import { useContext } from 'react';
 
 export function CodePreview() {
-  const { preview, dispatch } = useContext(EditorContext);
+  const { dispatch } = useContext(EditorContext);
 
   function handleClick(e) {
     e.stopPropagation();
@@ -18,7 +18,7 @@ export function CodePreview() {
 }
 
 export function CodeEdit() {
-  const { preview, dispatch } = useContext(EditorContext);
+  const { dispatch } = useContext(EditorContext);
 
   function handleClick(e) {
     e.stopPropagation();

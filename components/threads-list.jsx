@@ -95,14 +95,14 @@ export default function ThreadsList() {
             <ThreadItemSkeleton />
             <ThreadItemSkeleton />
           </>
-        ) : threadsList.map((thread) => ( 
-            <ThreadItem
-              key={thread.id}
-              {...thread}
-              onUpVote={handleUpVoteThread}
-              onDownVote={handleDownVoteThread}
-            />
-          ))}
+        ) : threadsList.map((thread) => (
+          <ThreadItem
+            key={thread.id}
+            {...thread}
+            onUpVote={handleUpVoteThread}
+            onDownVote={handleDownVoteThread}
+          />
+        ))}
       </article>
       {voteThreadError && (
         <div className="toast">
