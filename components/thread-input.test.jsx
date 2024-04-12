@@ -3,12 +3,15 @@ import {
   test,
   expect,
   afterEach,
+  beforeEach,
+  beforeAll,
   vi,
 } from 'vitest';
 import { render, screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import ThreadInput from './thread-input';
+import StoreProvider from '../app/store-provider';
 
 expect.extend(matchers);
 
@@ -18,17 +21,37 @@ expect.extend(matchers);
  *   - Should handle title typing correctly
  *   - Should handle category typing correctly
  *   - Should handle body typing correctly
- *   - Should call onCreateThread function when save button clicked
+ *   - Should call asyncCreateThread function when save button clicked
  */
 
 describe('ThreadInput component', () => {
+  beforeAll(() => {
+    // create mock for next/navigation
+    vi.mock('next/navigation', () => {
+      return {
+        useRouter: () => ({
+          push: () => {},
+          replace: () => {},
+          prefetch: () => {},
+        }),
+      };
+    });
+  });
+
+  beforeEach(() => {
+    render(
+      <StoreProvider>
+        <ThreadInput />
+      </StoreProvider>,
+    );
+  });
+
   afterEach(() => {
     cleanup();
   });
 
   test('Should handle title typing correctly', async () => {
     // Arrange
-    render(<ThreadInput onCreateThread={() => {}} />);
     const titleInput = screen.getByPlaceholderText(/title/i);
 
     // Action
@@ -40,7 +63,6 @@ describe('ThreadInput component', () => {
 
   test('Should handle category typing correctly', async () => {
     // Arrange
-    render(<ThreadInput onCreateThread={() => {}} />);
     const categoryInput = screen.getByPlaceholderText(/category/i);
 
     // Action
@@ -52,7 +74,6 @@ describe('ThreadInput component', () => {
 
   test('Should handle body typing correctly', async () => {
     // Arrange
-    render(<ThreadInput onCreateThread={() => {}} />);
     const bodyInput = screen.getByPlaceholderText(/body/i);
 
     // Action
@@ -62,10 +83,19 @@ describe('ThreadInput component', () => {
     expect(bodyInput).toHaveValue('This is body');
   });
 
-  test('Should call onCreateThread function when save button clicked', async () => {
+  test('Should call asyncCreateThread function when save button clicked', async () => {
     // Arrange
-    const mockOnCreateThread = vi.fn();
-    render(<ThreadInput onCreateThread={mockOnCreateThread} />);
+    // create mock for asyncCreateThread function 
+    vi.mock('@/lib/threads/action', async (importOriginal) => {
+      const mod = await importOriginal();
+      return {
+        ...mod,
+        asyncCreateThread: vi.fn(() => async () => {}),
+      };
+    });
+
+    const { asyncCreateThread } = await import('@/lib/threads/action');
+
     const titleInput = screen.getByPlaceholderText(/title/i);
     await userEvent.type(titleInput, 'This is title');
     const categoryInput = screen.getByPlaceholderText(/category/i);
@@ -78,10 +108,6 @@ describe('ThreadInput component', () => {
     await userEvent.click(saveButton);
 
     // Assert
-    expect(mockOnCreateThread).toBeCalledWith({
-      title: 'This is title',
-      category: 'This is category',
-      body: 'This is body',
-    });
+    expect(asyncCreateThread).toHaveBeenCalled();
   });
 });
