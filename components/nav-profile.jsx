@@ -19,18 +19,19 @@ export default function NavProfile() {
           {authUser ? (
             <Image alt={authUser.name} src={authUser.avatar} width={28} height={28} />
           ) : (
-            <div className="skeleton w-7 h-7 rounded-full" />
+            <div className="skeleton w-7 h-7 rounded-full" data-testid="avatar-skeleton" />
           )}
         </div>
       </div>
       <ul className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        <li className="menu-title">
+        <li className="menu-title" data-testid="menu-title">
           {authUser ? `Signed in as ${authUser.email}` : (
-            <div className="skeleton h-4 w-full" />
+            <div className="skeleton h-4 w-full" data-testid="menu-title-skeleton" />
           )}
         </li>
         <li>
           <button
+            data-testid="sign-out"
             type="button"
             className="hover:bg-red-50 hover:text-red-800 active:!bg-red-600 active:!text-gray-50"
             onClick={handleSignOut}
