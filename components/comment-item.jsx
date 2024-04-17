@@ -46,7 +46,7 @@ export default function CommentItem({
   }
 
   return (
-    <article className="bg-white border border-gray-300 p-4 mb-1.5 first:rounded-t-lg last:rounded-b-lg">
+    <article className="bg-white border border-gray-300 p-4 mb-1.5 rounded-lg">
       <div className="mb-4">
         <div className="avatar items-center text-sm mb-2">
           <div className="w-5 rounded-full me-2">

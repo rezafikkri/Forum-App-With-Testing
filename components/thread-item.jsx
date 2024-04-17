@@ -45,7 +45,7 @@ export default function ThreadItem({
   }
 
   return (
-    <article className="bg-white border border-gray-300 p-5 mb-1.5 first:rounded-t-xl last:rounded-b-xl">
+    <article className="bg-white border border-gray-300 p-5 mb-1.5 rounded-xl">
       <Link href={`/threads/${id}`}>
         <div className="hover:cursor-pointer mb-4">
           <div className="avatar items-center text-sm text-gray-500">
