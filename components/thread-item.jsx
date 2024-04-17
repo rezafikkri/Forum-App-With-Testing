@@ -70,6 +70,7 @@ export default function ThreadItem({
         </div>
 
         <button
+          data-testid="up-vote"
           type="button"
           className={isSignedInUserVoted({ authUser, votesBy: upVotesBy }) ? 'text-primary' : ''}
           onClick={handleUpVote}
@@ -78,6 +79,7 @@ export default function ThreadItem({
           <span>{upVotesBy.length}</span>
         </button>
         <button
+          data-testid="down-vote"
           type="button"
           className={isSignedInUserVoted({ authUser, votesBy: downVotesBy }) ? 'text-primary' : ''}
           onClick={handleDownVote}
