@@ -13,6 +13,10 @@ export function middleware(request) {
   ) {
     return Response.redirect(new URL('/', request.url));
   }
+
+  if (!signIn && request.nextUrl.pathname.startsWith('/create')) {
+    return Response.redirect(new URL('/', request.url));
+  }
 }
 
 export const config = {

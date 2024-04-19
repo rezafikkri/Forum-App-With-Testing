@@ -3,13 +3,21 @@
 import Image from 'next/image';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { asyncUnsetAuthUser } from '@/lib/authUser/action';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function NavProfile() {
   const authUser = useAppSelector((states) => states.authUser);
   const dispatch = useAppDispatch();
+  const pathName = usePathname();
+  const router = useRouter();
 
   function handleSignOut() {
-    dispatch(asyncUnsetAuthUser());
+    dispatch(asyncUnsetAuthUser()).then(() => {
+      // if pathname = '/create'
+      if (pathName === '/create') {
+        router.push('/');
+      }
+    });
   }
 
   return (
