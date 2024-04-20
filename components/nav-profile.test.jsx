@@ -4,6 +4,7 @@ import {
   expect,
   vi,
   afterEach,
+  beforeAll,
 } from 'vitest';
 import { screen, cleanup } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -23,6 +24,20 @@ expect.extend(matchers);
  */
 
 describe('NavProfile component', () => {
+  beforeAll(() => {
+    // create mock for next/navigation
+    vi.mock('next/navigation', () => {
+      return {
+        useRouter: () => ({
+          push: () => {},
+          replace: () => {},
+          prefetch: () => {},
+        }),
+        usePathname: () => {},
+      };
+    });
+  });
+
   afterEach(() => {
     cleanup();
   });
