@@ -58,7 +58,7 @@ describe('Sign In spec', () => {
     cy.get('button').contains('Sign In').click();
     // Assert
     cy.get('h1').contains('Threads').should('be.visible');
-    cy.get('a', { timeout: 10000 }).contains('Create Thread').should('be.visible');
-    cy.get('nav button', { timeout: 10000 }).contains('Sign Out').should('exist');
+    cy.get('a').contains('Create Thread').should('be.visible');
+    cy.get('nav button').contains('Sign Out').should('exist');
   });
 });
