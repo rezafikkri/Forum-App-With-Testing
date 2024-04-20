@@ -12,7 +12,6 @@ import userEvent from '@testing-library/user-event';
 import * as matchers from '@testing-library/jest-dom/matchers';
 import RegisterInput from './register-input';
 import StoreProvider from '../app/store-provider';
-import { asyncRegisterUser } from '@/lib/users/action';
 
 expect.extend(matchers);
 
@@ -28,22 +27,20 @@ expect.extend(matchers);
 describe('RegisterInput component', () => {
   beforeAll(() => {
     // create mock for next/navigation
-    vi.mock('next/navigation', () => {
-      return {
-        useRouter: () => ({
-          push: () => {},
-          replace: () => {},
-          prefetch: () => {},
-        }),
-      };
-    });
+    vi.mock('next/navigation', () => ({
+      useRouter: () => ({
+        push: () => {},
+        replace: () => {},
+        prefetch: () => {},
+      }),
+    }));
   });
 
   beforeEach(() => {
     render(
       <StoreProvider>
         <RegisterInput />
-      </StoreProvider>
+      </StoreProvider>,
     );
   });
 

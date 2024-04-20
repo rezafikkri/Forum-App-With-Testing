@@ -26,16 +26,14 @@ expect.extend(matchers);
 describe('NavProfile component', () => {
   beforeAll(() => {
     // create mock for next/navigation
-    vi.mock('next/navigation', () => {
-      return {
-        useRouter: () => ({
-          push: () => {},
-          replace: () => {},
-          prefetch: () => {},
-        }),
-        usePathname: () => {},
-      };
-    });
+    vi.mock('next/navigation', () => ({
+      useRouter: () => ({
+        push: () => {},
+        replace: () => {},
+        prefetch: () => {},
+      }),
+      usePathname: () => {},
+    }));
   });
 
   afterEach(() => {
@@ -67,7 +65,7 @@ describe('NavProfile component', () => {
       },
     });
     const avatar = screen.getByAltText(authUser.name);
-    const menuTitle = screen.getByText(`Signed in as ${authUser.email}`)
+    const menuTitle = screen.getByText(`Signed in as ${authUser.email}`);
     // Action
     // Assert
     expect(avatar).toBeInTheDocument();

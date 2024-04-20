@@ -26,22 +26,20 @@ expect.extend(matchers);
 describe('SignInInput component', () => {
   beforeAll(() => {
     // create mock for next/navigation
-    vi.mock('next/navigation', () => {
-      return {
-        useRouter: () => ({
-          push: () => {},
-          replace: () => {},
-          prefetch: () => {},
-        }),
-      };
-    });
+    vi.mock('next/navigation', () => ({
+      useRouter: () => ({
+        push: () => {},
+        replace: () => {},
+        prefetch: () => {},
+      }),
+    }));
   });
 
   beforeEach(() => {
     render(
       <StoreProvider>
         <SignInInput />
-      </StoreProvider>
+      </StoreProvider>,
     );
   });
 

@@ -27,15 +27,13 @@ expect.extend(matchers);
 describe('ThreadInput component', () => {
   beforeAll(() => {
     // create mock for next/navigation
-    vi.mock('next/navigation', () => {
-      return {
-        useRouter: () => ({
-          push: () => {},
-          replace: () => {},
-          prefetch: () => {},
-        }),
-      };
-    });
+    vi.mock('next/navigation', () => ({
+      useRouter: () => ({
+        push: () => {},
+        replace: () => {},
+        prefetch: () => {},
+      }),
+    }));
   });
 
   beforeEach(() => {
@@ -85,7 +83,7 @@ describe('ThreadInput component', () => {
 
   test('Should call asyncCreateThread function when save button clicked', async () => {
     // Arrange
-    // create mock for asyncCreateThread function 
+    // create mock for asyncCreateThread function
     vi.mock('@/lib/threads/action', async (importOriginal) => {
       const mod = await importOriginal();
       return {

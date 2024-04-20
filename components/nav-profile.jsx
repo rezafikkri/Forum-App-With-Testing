@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux-hooks';
 import { asyncUnsetAuthUser } from '@/lib/authUser/action';
-import { usePathname, useRouter } from 'next/navigation';
 
 export default function NavProfile() {
   const authUser = useAppSelector((states) => states.authUser);
