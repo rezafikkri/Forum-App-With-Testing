@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
-    "e2e": "cypress run"
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress run --config defaultCommandTimeout=10000\""
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
@@ -52,6 +52,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "jsdom": "^24.0.0",
     "postcss": "^8",
+    "start-server-and-test": "^2.0.3",
     "tailwindcss": "^3.3.0",
     "vitest": "^1.4.0"
   }
