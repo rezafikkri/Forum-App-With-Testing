@@ -48,7 +48,7 @@ describe('Create Thread spec', () => {
     cy.signIn();
     cy.visit('/create');
     cy.get('input[placeholder="Enter thread title"]').type('End to end testing');
-    cy.get('textarea[placeholder="Enter thread category"]').type('e2e testing');
+    cy.get('input[placeholder="Enter thread category"]').type('e2e testing');
     cy.get('textarea[placeholder="Enter thread body"]').type('This is *e2e* testing');
     // Action
     cy.get('button').contains('Save').click();
