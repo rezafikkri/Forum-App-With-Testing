@@ -1,71 +1,73 @@
-.w-md-editor {
+.editor .w-md-editor {
   border-radius: 8px;
   font-family: var(--font-open-sans);
   box-shadow: none;
   border: 1px solid rgb(209 213 219);
 }
 
-.w-md-editor:focus-within {
+.editor .w-md-editor:focus-within {
   outline: 2px solid rgb(209 213 219);
   outline-offset: 2px;
 }
 
-.w-md-editor-toolbar {
+.editor .w-md-editor-toolbar {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding: 5px;
   background-color: #F6F8FA;
 }
 
-.w-md-editor-toolbar li > button {
+.editor .w-md-editor-toolbar li > button {
   height: auto;
   border-radius: 5px;
   margin: 0px;
   color: rgb(75 85 99);
 }
 
-.w-md-editor-toolbar li > button span {
+.editor .w-md-editor-toolbar li > button span {
   line-height: 1.125rem;
 }
 
-.w-md-editor-toolbar li.active > button,
-.w-md-editor-toolbar li > button:hover {
+.editor .w-md-editor-toolbar li.active > button,
+.editor .w-md-editor-toolbar li > button:hover {
   color: #1f2937;
 }
 
-.w-md-editor-toolbar li > button i {
+.editor .w-md-editor-toolbar li > button i {
   line-height: 0;
 }
 
-.w-md-editor-toolbar ul {
+.editor .w-md-editor-toolbar ul {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.w-md-editor-toolbar li.w-md-editor-toolbar-divider {
+.editor .w-md-editor-toolbar li.w-md-editor-toolbar-divider {
   margin-top: 0px !important;
   height: 16px;
 }
 
-.w-md-editor-text,
-.w-md-editor-preview {
+.editor .w-md-editor-text,
+.editor .w-md-editor-preview {
   padding: 1rem;
 }
 
-.w-md-editor-text-pre, .w-md-editor-text-input, .w-md-editor-text > .w-md-editor-text-pre {
+.editor .w-md-editor-text-pre,
+.editor .w-md-editor-text-input,
+.editor .w-md-editor-text > .w-md-editor-text-pre {
   font-family: var(--font-open-sans) !important;
   font-size: 1rem;
   line-height: 1.5rem;
 }
 
-.w-md-editor-text-pre > code {
+.editor .w-md-editor-text-pre > code {
   font-family: var(--font-open-sans) !important;
   font-size: 1rem !important;
   line-height: 1.5rem !important;
 }
 
-.w-md-editor-bar {
+.editor .w-md-editor-bar {
   margin-right: 1px;
   margin-bottom: 0px;
 }

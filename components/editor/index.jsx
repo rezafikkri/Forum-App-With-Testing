@@ -76,6 +76,7 @@ export default function Editor({ value, onValueChange, placeholder }) {
         components={{
           preview: customPreview,
         }}
+        className="editor"
       />
     </div>
   );
