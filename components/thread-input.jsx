@@ -44,7 +44,7 @@ export default function ThreadInput() {
           </div>
           <input
             type="text"
-            placeholder="Enter thread titlesssss"
+            placeholder="Enter thread title"
             className="input input-bordered w-full"
             value={title}
             onChange={handleTitleChange}
