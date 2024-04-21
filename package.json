@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest",
-    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress run --config defaultCommandTimeout=10000\""
+    "e2e": "start-server-and-test dev http://localhost:3000 \"cypress run --config defaultCommandTimeout=10000\"",
+    "ci:test": "vitest --no-watch && npm run e2e"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.2",
