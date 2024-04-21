@@ -3,13 +3,13 @@ import Comments from '@/components/comments';
 import ThreadCard from '@/components/thread-card';
 import api from '@/lib/api';
 
-// export async function generateStaticParams() {
-//   const threads = await api.getAllThreads();
+export async function generateStaticParams() {
+  const threads = await api.getAllThreads();
 
-//   return threads.map((thread) => ({
-//     threadId: thread.id,
-//   }));
-// }
+  return threads.map((thread) => ({
+    threadId: thread.id,
+  }));
+}
 
 export async function generateMetadata({ params }) {
   const { threadId } = params;
