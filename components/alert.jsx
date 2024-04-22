@@ -38,6 +38,7 @@ export default function Alert({ message, onClose, type = 'danger' }) {
 
 Alert.propTypes = {
   message: PropTypes.string.isRequired,
+  /** Use for create dismiss alert, by utilizing react state feature */
   onClose: PropTypes.func.isRequired,
   type: PropTypes.string,
 };
