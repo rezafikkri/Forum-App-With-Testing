@@ -26,4 +26,4 @@ export const Danger = {
     onClose: () => {},
     type: 'danger',
   },
-}
+};

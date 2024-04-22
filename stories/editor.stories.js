@@ -6,7 +6,7 @@ export default {
   tags: ['autodocs'],
 };
 
-export const withDefaultValue = {
+export const WithDefaultValue = {
   args: {
     value: 'This is *content* and `code`',
     placeholder: 'This is placeholder...',
@@ -14,7 +14,7 @@ export const withDefaultValue = {
   },
 };
 
-export const withoutDefaultValue = {
+export const WithoutDefaultValue = {
   args: {
     value: '',
     placeholder: 'This is placeholder...',

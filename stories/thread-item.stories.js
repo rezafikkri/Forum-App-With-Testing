@@ -1,5 +1,6 @@
-import ThreadItem from '@/components/thread-item';
+/* eslint-disable react/jsx-filename-extension */
 import { Provider } from 'react-redux';
+import ThreadItem from '@/components/thread-item';
 import { makeStore } from '@/lib/store';
 
 const preloadedState = {
@@ -7,7 +8,7 @@ const preloadedState = {
     id: 'user-tRjjTfGgtdp409en',
     name: 'diantest',
     email: 'diantest@yahoo.com',
-    avatar: 'https://ui-avatars.com/api/?name=diantest&background=random'
+    avatar: 'https://ui-avatars.com/api/?name=diantest&background=random',
   },
 };
 
@@ -27,7 +28,10 @@ export const Default = {
     body: 'Bootstrap’s color palette has continued to expand and become more nuanced in v5.3.0. We’ve added new variables for secondary and tertiary text and background colors, plus {color}-bg-subtle, {color}-border-subtle, and {color}-text-emphasis for our theme colors.',
     category: 'bootstrap',
     createdAt: '2021-06-21T07:00:00.000Z',
-    owner: { name: 'RezaFikkri', avatar: 'https://ui-avatars.com/api/?name=diantest&background=random'},
+    owner: {
+      name: 'RezaFikkri',
+      avatar: 'https://ui-avatars.com/api/?name=diantest&background=random',
+    },
     upVotesBy: [],
     downVotesBy: [],
     totalComments: 2,
@@ -40,14 +44,17 @@ export const Default = {
  * How up vote button can active? This is when **user signed in id** exists in `upVotesBy`
  * thread array.
  */
-export const withUpVoteActive = {
+export const WithUpVoteActive = {
   args: {
     id: 'id-1',
     title: 'Bootstrap Colors',
     body: 'Bootstrap’s color palette has continued to expand and become more nuanced in v5.3.0. We’ve added new variables for secondary and tertiary text and background colors, plus {color}-bg-subtle, {color}-border-subtle, and {color}-text-emphasis for our theme colors.',
     category: 'bootstrap',
     createdAt: '2021-06-21T07:00:00.000Z',
-    owner: { name: 'RezaFikkri', avatar: 'https://ui-avatars.com/api/?name=diantest&background=random'},
+    owner: {
+      name: 'RezaFikkri',
+      avatar: 'https://ui-avatars.com/api/?name=diantest&background=random',
+    },
     upVotesBy: ['user-tRjjTfGgtdp409en', 'users-2'],
     downVotesBy: [],
     totalComments: 2,
